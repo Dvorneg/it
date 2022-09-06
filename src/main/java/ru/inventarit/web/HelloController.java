@@ -12,4 +12,5 @@ public class HelloController {
         log.info("стартовая страница");
         return "index";
     }
+
 }

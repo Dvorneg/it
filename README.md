@@ -6,4 +6,5 @@
 
 * [Ссылка на документацию](https://github.com/Dvorneg/it)
 
-
+Для работы необходим postgresSQL с созданной базой equipment.
+Настройки подключения к БД в файле application.properties

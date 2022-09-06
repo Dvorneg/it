@@ -40,4 +40,8 @@ public class Equipment extends BaseEntity{
     @Column(name = "responsible_person" )
     private String responsiblePerson;
 
+/*    //Группа ОС ->enum
+    @Column(name = "responsible_person" )
+    private String typeOf;*/
+
 }
