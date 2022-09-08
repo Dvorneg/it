@@ -1,12 +1,13 @@
 package ru.inventarit.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -24,8 +25,9 @@ public class Equipment extends BaseEntity{
     //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date dateTime= new Date();*/
     @NotNull
-    @Column(name = "date_receipt", nullable = false,columnDefinition = "timestamp default now()")
-    private Date receiptDate= new Date();
+    @Column(name = "release_date", nullable = false,columnDefinition = "date default now()")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate releaseDate= LocalDate.now();
 
     //местоположение
     @Column(name = "description", nullable = false)
@@ -39,6 +41,14 @@ public class Equipment extends BaseEntity{
     //МОЛ
     @Column(name = "responsible_person" )
     private String responsiblePerson;
+
+    public Equipment(Integer id, String company, String description,String responsiblePerson,LocalDate releaseDate) {
+        super(id);
+        this.company = company;
+        this.description = description;
+        this.responsiblePerson = responsiblePerson;
+        this.releaseDate = releaseDate;
+    }
 
 /*    //Группа ОС ->enum
     @Column(name = "responsible_person" )
