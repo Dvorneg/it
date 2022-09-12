@@ -1,12 +1,9 @@
 package ru.inventarit.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
@@ -19,13 +16,9 @@ import javax.validation.constraints.Size;
 @Table(name = "equipment")
 public class Equipment extends BaseEntity{
 
-/*  Дата принятия?
-    @NotNull
-    @Column(name = "date_time", nullable = false,columnDefinition = "timestamp default now()", updatable = false)
-    //@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Date dateTime= new Date();*/
-    @NotNull
-    @Column(name = "release_date", nullable = false,columnDefinition = "date default now()")
+/*  Дата принятия?*/
+    @Column(name = "release_date", nullable = false )
+    //Переопределить, если нужно будет время, columnDefinition = "timestamp default now()")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate releaseDate= LocalDate.now();
 
@@ -34,6 +27,7 @@ public class Equipment extends BaseEntity{
     @NotBlank
     @Size(min = 2, max = 120)
     private String description;
+
     //компания
     @Column(name = "company", nullable = false)
     private String company;
@@ -42,16 +36,25 @@ public class Equipment extends BaseEntity{
     @Column(name = "responsible_person" )
     private String responsiblePerson;
 
-    public Equipment(Integer id, String company, String description,String responsiblePerson,LocalDate releaseDate) {
+    //Группа ОС ->enum
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_of" )
+    private TypeOf typeOf;
+
+    public Equipment(Integer id, String company, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
         super(id);
         this.company = company;
         this.description = description;
         this.responsiblePerson = responsiblePerson;
         this.releaseDate = releaseDate;
+        this.typeOf = typeOf;
     }
 
-/*    //Группа ОС ->enum
-    @Column(name = "responsible_person" )
-    private String typeOf;*/
-
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
