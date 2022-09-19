@@ -41,6 +41,11 @@ public class Equipment extends BaseEntity{
     @Column(name = "type_of" )
     private TypeOf typeOf;
 
+    //Inv. No.
+    @Column(name = "inventory_number" )
+    private String inventoryNumber;
+
+
     public Equipment(Integer id, String company, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
         super(id);
         this.company = company;
@@ -54,6 +59,7 @@ public class Equipment extends BaseEntity{
     public String toString() {
         return "Equipment{" +
                 "id=" + id +
+                "Inv. No=" + inventoryNumber +
                 ", description='" + description + '\'' +
                 '}';
     }

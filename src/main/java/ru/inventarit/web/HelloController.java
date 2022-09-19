@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @Slf4j
+
 public class HelloController {
     @GetMapping("/")
     public String index() {

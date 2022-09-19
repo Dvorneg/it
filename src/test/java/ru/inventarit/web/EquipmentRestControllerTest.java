@@ -6,11 +6,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static ru.inventarit.web.EquipmentController.REST_URL;
+import static ru.inventarit.web.EquipmentRestController.REST_URL;
 import static ru.inventarit.web.EquipmentTestData.EQUIPMENT_MATCHER;
 import static ru.inventarit.web.EquipmentTestData.equipments;
 
-public class EquipmentControllerTest extends AbstractControllerTest{
+public class EquipmentRestControllerTest extends AbstractControllerTest{
 
     @Test
     //@WithUserDetails(value = USER_MAIL)

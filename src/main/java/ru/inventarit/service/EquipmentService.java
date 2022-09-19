@@ -1,6 +1,7 @@
 package ru.inventarit.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.repository.EquipmentRepository;
@@ -15,5 +16,12 @@ public class EquipmentService {
     public List<Equipment> getAll() {
         return repository.findAll();
     }
+
+    public ResponseEntity<Equipment> getById(int id)
+    {
+        return ResponseEntity.of(repository.findById(id));
+
+    }
+
 
 }

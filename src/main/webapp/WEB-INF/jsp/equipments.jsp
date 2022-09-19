@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html lang="ru">
+
+<head>
+    <title>IT</title>
+
+    <base href="${pageContext.request.contextPath}/"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
+    <link rel="stylesheet" href="webjars/bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="webjars/datatables/1.11.3/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
+
+
+    <%--
+        <link rel="stylesheet" href="webjars/datetimepicker/2.5.20-1/jquery.datetimepicker.css">
+    --%>
+    <%--    <link rel="shortcut icon" href="resources/images/icon-meal.png">--%>
+
+    <%--http://stackoverflow.com/a/24070373/548473--%>
+    <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="webjars/bootstrap/4.6.1/js/bootstrap.min.js" defer></script>
+    <script src="webjars/datatables/1.11.3/js/jquery.dataTables.min.js" defer></script>
+    <script src="webjars/datatables/1.11.3/js/dataTables.bootstrap4.min.js" defer></script>
+    <script src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
+    <%--<script src="webjars/datetimepicker/2.5.20-1/build/jquery.datetimepicker.full.min.js" defer></script>--%>
+
+    <title>IT2</title>
+</head>
+<body>
+<%--<script src="${pageContext.request.contextPath}/resources/js/topjava.common.js" defer></script>--%>
+<script src="${pageContext.request.contextPath}/resources/js/it.equipments.js" defer></script>
+<div class="jumbotron pt-4">
+    <div class="container">
+        <h3 class="text-center">Оборудование</h3>
+<%--        <button class="btn btn-primary" onclick="add()">
+            <span class="fa fa-plus"></span>
+            Добавить
+        </button>--%>
+        <table class="table table-striped" id="datatable11">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>inv</th>
+                <th>opisnie</th>
+<%--                <th>123</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>--%>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<%--<script>
+    $(document).ready(function() {
+        var table = $('#datatable').DataTable( {
+            lengthChange: false,
+            buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+        } );
+
+        table.buttons().container()
+            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+    } );
+</script>--%>
+</body>
+</html>
