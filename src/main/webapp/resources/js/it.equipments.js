@@ -23,10 +23,11 @@ function makeEditable(datatableOpts) {
                     "dataSrc": ""
                 },
                 "paging": false,
-                "info": true
-/*                ",language": {
-                    url:"resources/zh_RU.json"
-                }*/
+                "info": true,
+               "language": {
+                    url:"resources/dataTable/ru_RU.json"
+                }
+                //, buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
             }
         ));
     /*form = $('#detailsForm');*/

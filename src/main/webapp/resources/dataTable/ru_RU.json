@@ -1,0 +1,25 @@
+{
+  "sProcessing": "Обработка ...",
+  "sLengthMenu": "Показать результаты _MENU_",
+  "sZeroRecords": "Нет подходящих результатов",
+  "sInfo": "Показаны результаты с _START_ по _END_ из _TOTAL_",
+  "sInfoEmpty": "Показано с 0 по 0 из 0 результатов",
+  "sInfoFiltered": "(Отфильтровано по _MAX_ результатам)",
+  "sInfoPostFix": "",
+  "sSearch": "Искать:",
+  "sUrl": "",
+  "sEmptyTable": "Данные в таблице пустые",
+  "sLoadingRecords": "загрузка ...",
+  "sInfoThousands": ",",
+  "oPaginate": {
+    "sFirst": "Домашняя страница",
+    "sPrevious": "Предыдущая страница",
+    "sNext": "следующая страница",
+    "sLast": "Предыдущая страница",
+    "sJump": "Переход"
+  },
+  "oAria": {
+    "sSortAscending": ": Отсортировать этот столбец по возрастанию",
+    "sSortDescending": ": Отсортировать этот столбец в порядке убывания"
+  }
+}
