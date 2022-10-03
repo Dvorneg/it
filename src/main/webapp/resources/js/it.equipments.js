@@ -55,10 +55,22 @@ function makeEditable(datatableOpts) {
                      "data": "id"
                  },
                  {
+                     "data": "inventoryNumber"
+                 },
+                 {
+                     "data": "name"
+                 },
+                 {
                      "data": "description"
                  },
                  {
+                     "data": "company"
+                 },
+                 {
                      "data": "typeOf"
+                 },
+                 {
+                     "data": "releaseDate"
                  }
              ]
              ,

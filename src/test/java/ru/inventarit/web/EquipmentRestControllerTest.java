@@ -34,7 +34,7 @@ public class EquipmentRestControllerTest extends AbstractControllerTest{
     void getAllWithMatcherElement() throws Exception {
 
         perform(MockMvcRequestBuilders.get(REST_URL))
-                .andExpect(jsonPath("$[1].company").value("company2"));
+                .andExpect(jsonPath("$[1].company").value("LG"));
     }
 
 

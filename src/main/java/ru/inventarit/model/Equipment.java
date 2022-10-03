@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Entity
 @Table(name = "equipment")
-public class Equipment extends BaseEntity{
+public class Equipment extends NamedEntity{
 
 /*  Дата принятия?*/
     @Column(name = "release_date", nullable = false )
@@ -28,7 +28,7 @@ public class Equipment extends BaseEntity{
     @Size(min = 2, max = 120)
     private String description;
 
-    //компания
+    //фирма производитель (manufacturer company)
     @Column(name = "company", nullable = false)
     private String company;
 
@@ -46,8 +46,8 @@ public class Equipment extends BaseEntity{
     private String inventoryNumber;
 
 
-    public Equipment(Integer id, String company, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
-        super(id);
+    public Equipment(Integer id, String name, String company, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
+        super(id, name);
         this.company = company;
         this.description = description;
         this.responsiblePerson = responsiblePerson;
