@@ -30,6 +30,7 @@ public class Equipment extends NamedEntity{
 
     //фирма производитель (manufacturer company)
     @Column(name = "company", nullable = false)
+    @Size(min = 2, max = 70)
     private String company;
 
     //МОЛ

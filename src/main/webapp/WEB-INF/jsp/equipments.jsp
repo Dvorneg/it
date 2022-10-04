@@ -5,26 +5,13 @@
 <html lang="ru">
 
 <head>
-    <title>IT2</title>
-
-    <base href="${pageContext.request.contextPath}/"/>
-    <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
-    <link rel="stylesheet" href="webjars/bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="webjars/datatables/1.12.1/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
-
-    <script src="webjars/jquery/3.6.1/jquery.min.js"></script>
-    <script src="webjars/bootstrap/5.2.0/js/bootstrap.min.js" defer></script>
-   <script src="webjars/datatables/1.12.1/js/jquery.dataTables.min.js" defer></script>
-    <script src="webjars/datatables/1.12.1/js/dataTables.bootstrap5.min.js" defer></script>
-    <script src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
-    <%--<script src="webjars/datetimepicker/2.5.20-1/build/jquery.datetimepicker.full.min.js" defer></script>--%>
-
+    <jsp:include page="fragments/headTag.jsp"/>
 </head>
+   <script src="webjars/jquery/3.6.1/jquery.min.js"></script>
+   <script src="webjars/datatables/1.12.1/js/jquery.dataTables.min.js" defer></script>
 <body>
-<%--<script src="${pageContext.request.contextPath}/resources/js/topjava.common.js" defer></script>--%>
-<script src="${pageContext.request.contextPath}/resources/js/it.equipments.js" defer></script>
+<jsp:include page="fragments/bodyHeader.jsp"/>
+<script src="resources/js/it.equipments.js" defer></script>
 <div class="jumbotron pt-4">
     <div class="container">
         <h3 class="text-center">Оборудование</h3>
@@ -48,7 +35,6 @@
         </table>
     </div>
 </div>
-
 <%--<script>
     $(document).ready(function() {
         var table = $('#datatable').DataTable( {
@@ -60,5 +46,6 @@
             .appendTo( '#example_wrapper .col-md-6:eq(0)' );
     } );
 </script>--%>
+<jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
