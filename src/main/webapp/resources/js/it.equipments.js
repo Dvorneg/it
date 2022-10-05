@@ -1,16 +1,25 @@
-const userAjaxUrl = "/api/equipments";
+const equipmentAjaxUrl = "/api/equipments";
 let form;
+
+
 // https://stackoverflow.com/a/5064235/548473
 const ctx = {
-    ajaxUrl: userAjaxUrl,
+    ajaxUrl: equipmentAjaxUrl,
     updateTable: function () {
-        $.get(userAjaxUrl, updateTableByData);
+        $.ajax({
+            type: "GET",
+            url: mealAjaxUrl /*+ "filter",*/
+            /*data: $("#filter").serialize()*/
+        }).done(updateTableByData);
     }
 }
+
 
 function updateTableByData(data) {
     ctx.datatableApi.clear().rows.add(data).draw();
 }
+
+
 
 function makeEditable(datatableOpts) {
 
@@ -22,7 +31,7 @@ function makeEditable(datatableOpts) {
                     "url": ctx.ajaxUrl,
                     "dataSrc": ""
                 },
-                "paging": false,
+                "paging": true,
                 "info": true,
                "language": {
                     url:"resources/dataTable/ru_RU.json"
@@ -30,11 +39,10 @@ function makeEditable(datatableOpts) {
                 //, buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
             }
         ));
-    /*form = $('#detailsForm');*/
+    form = $('#detailsForm');
 
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-        //alert(jsExc);
-        //failNoty(jqXHR);
+        failNoty(jqXHR);
     });
     //alert("Шаг 1, ок!");
     $.ajaxSetup({cache: false});
@@ -46,6 +54,7 @@ function makeEditable(datatableOpts) {
             xhr.setRequestHeader(header, token);
         });*/
 }
+
 
  $(document).ready(function () {
      $(function () {
@@ -84,3 +93,53 @@ function makeEditable(datatableOpts) {
          });
      });
  });
+
+
+/*function updateRow(id) {
+    form.find(":input").val("");
+    $("#modalTitle").html("editTitle");
+    $.get(ctx.ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        $('#editRow').modal();
+    });
+}*/
+
+
+let failedNote;
+
+function add() {
+    $("#modalTitle").html("Добавить оборудование.");
+    form.find(":input").val("");
+    const modal = new bootstrap.Modal(document.querySelector('#editRow'));
+    modal.show();
+}
+
+function closeNoty() {
+    if (failedNote) {
+        failedNote.close();
+        failedNote = undefined;
+    }
+}
+
+function successNoty(key) {
+    closeNoty();
+    new Noty({
+        text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + key,
+        type: 'success',
+        layout: "bottomRight",
+        timeout: 1000
+    }).show();
+}
+
+function failNoty(jqXHR) {
+    closeNoty();
+    var errorInfo = jqXHR.responseJSON;
+    failedNote = new Noty({
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
+        type: "error",
+        layout: "bottomRight"
+    });
+    failedNote.show()
+}

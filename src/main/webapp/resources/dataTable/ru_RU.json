@@ -3,7 +3,7 @@
   "sLengthMenu": "Показать результаты _MENU_",
   "sZeroRecords": "Нет подходящих результатов",
   "sInfo": "Показаны результаты с _START_ по _END_ из _TOTAL_",
-  "sInfoEmpty": "Показано с 0 по 0 из 0 результатов",
+  "sInfoEmpty": "Результатов не найдено!",
   "sInfoFiltered": "(Отфильтровано по _MAX_ результатам)",
   "sInfoPostFix": "",
   "sSearch": "Искать:",
@@ -13,9 +13,9 @@
   "sInfoThousands": ",",
   "oPaginate": {
     "sFirst": "Домашняя страница",
-    "sPrevious": "Предыдущая страница",
-    "sNext": "Следующая страница",
-    "sLast": "Предыдущая страница",
+    "sPrevious": "стр",
+    "sNext": "<",
+    "sLast": ">",
     "sJump": "Переход"
   },
   "oAria": {
