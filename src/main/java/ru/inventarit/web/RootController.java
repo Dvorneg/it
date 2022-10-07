@@ -7,11 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @Slf4j
 
-public class HelloController {
+public class RootController {
     @GetMapping("/")
     public String index() {
         log.info("стартовая страница");
         return "index";
+    }
+
+    @GetMapping("/equipments")
+    public String getEquipments() {
+        log.info("equipments страница");
+        return "equipments";
     }
 
 }

@@ -40,19 +40,13 @@
             <div class="modal-header">
                 <h4 class="modal-title" id="modalTitle"></h4>
                 <%--<button type="button" class="btn-close"  data-bs-dismiss="modal" onclick="closeNoty()">&times;</button>--%>
-                <button type="button" class="btn-close"  data-bs-dismiss="modal" onclick="closeNoty()"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="closeNoty()"></button>
             </div>
             <div class="modal-body">
-               <form id="detailsForm">
+                <form id="detailsForm">
 
                     <%--<input type="hidden" id="id" name="id">--%>
-                    <input  id="id" name="id">
-
-                   <div class="form-group">
-                       <label for="release_date" class="col-form-label">release_date</label>
-                       <input class="form-control" id="release_date" name="release_date" autocomplete="off"
-                              placeholder="release_date">
-                   </div>
+                    <input id="id" name="id">
 
                     <div class="form-group">
                         <label for="name" class="col-form-label">Модель</label>
@@ -60,10 +54,40 @@
                                placeholder="name">
                     </div>
 
-                   <div class="form-group">
+                    <%--                    <div class="form-group">
+                                            <label for="release_date" class="col-form-label">release_date</label>
+                                            <input class="form-control" id="release_date" name="release_date" autocomplete="off"
+                                                   placeholder="release_date">
+                                        </div>--%>
+
+                    <div class="form-group">
                         <label for="description" class="col-form-label">description</label>
                         <input type="text" class="form-control" id="description" name="description"
                                placeholder="description">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inventoryNumber" class="col-form-label">inventoryNumber</label>
+                        <input type="text" class="form-control" id="inventoryNumber" name="inventoryNumber"
+                               placeholder="inventoryNumber">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company" class="col-form-label">company</label>
+                        <input type="text" class="form-control" id="company" name="company"
+                               placeholder="company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="responsiblePerson" class="col-form-label">Ответственный</label>
+                        <input type="text" class="form-control" id="responsiblePerson" name="responsiblePerson"
+                               placeholder="responsiblePerson">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="typeOf" class="col-form-label">typeOf</label>
+                        <input type="text" class="form-control" id="typeOf" name="typeOf"
+                               placeholder="typeOf">
                     </div>
 
                 </form>
@@ -71,7 +95,7 @@
             <div class="modal-footer">
                 <%--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeNoty()">--%>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeNoty()">
-                   <span class="fa fa-close"></span>Отмена
+                    <span class="fa fa-close"></span>Отмена
                 </button>
 
                 <button type="button" class="btn btn-primary" onclick="save()">

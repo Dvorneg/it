@@ -1,6 +1,6 @@
-const equipmentAjaxUrl = "/api/equipments";
+const equipmentAjaxUrl = "/profile/equipments";
 let form;
-
+const modal = new bootstrap.Modal(document.querySelector('#editRow'));
 
 // https://stackoverflow.com/a/5064235/548473
 const ctx = {
@@ -8,7 +8,7 @@ const ctx = {
     updateTable: function () {
         $.ajax({
             type: "GET",
-            url: mealAjaxUrl /*+ "filter",*/
+            url: equipmentAjaxUrl /*+ "filter",*/
             /*data: $("#filter").serialize()*/
         }).done(updateTableByData);
     }
@@ -34,7 +34,7 @@ function makeEditable(datatableOpts) {
                 "paging": true,
                 "info": true,
                "language": {
-                    url:"resources/dataTable/ru_RU.json"
+                    url:"resources/dataTable/ru.json"
                 }
                 //, buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
             }
@@ -109,11 +109,24 @@ function makeEditable(datatableOpts) {
 
 let failedNote;
 
+//После кнопки "добавить" (открытие модального окна)
 function add() {
     $("#modalTitle").html("Добавить оборудование.");
     form.find(":input").val("");
-    const modal = new bootstrap.Modal(document.querySelector('#editRow'));
     modal.show();
+}
+
+//После кнопки "Сохранить" (модального окна)
+function save() {
+    $.ajax({
+        type: "POST",
+        url: ctx.ajaxUrl,
+        data: form.serialize()
+    }).done(function () {
+        modal.hide();
+        ctx.updateTable();
+        successNoty("saved");
+    });
 }
 
 function closeNoty() {
@@ -137,7 +150,8 @@ function failNoty(jqXHR) {
     closeNoty();
     var errorInfo = jqXHR.responseJSON;
     failedNote = new Noty({
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
+        //text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.error+("<br>"),
         type: "error",
         layout: "bottomRight"
     });

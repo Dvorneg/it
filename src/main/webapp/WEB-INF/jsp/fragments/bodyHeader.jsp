@@ -10,7 +10,7 @@
             <a class="nav-link" href="#">Главная <span class="sr-only">()</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="profile/equipment">Оборудование</a>
+            <a class="nav-link" href="equipments">Оборудование</a>
         </li>
     </ul>
 </nav>
