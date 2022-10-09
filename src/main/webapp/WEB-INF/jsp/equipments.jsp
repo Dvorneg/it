@@ -1,9 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="ru">
-    <jsp:include page="fragments/headTag.jsp"/>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <script src="resources/js/it.equipments.js" defer></script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
@@ -20,7 +20,8 @@
             <tr>
                 <th>id</th>
                 <th>Инв №</th>
-                <th>Модель</th> <%--name--%>
+                <th>Модель</th>
+                <%--name--%>
                 <th>Описание</th>
                 <th>Фирма-производитель</th>
                 <th>Тип</th>
@@ -85,15 +86,27 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="typeOf" class="col-form-label">typeOf</label>
-                        <input type="text" class="form-control" id="typeOf" name="typeOf"
-                               placeholder="typeOf">
+                        <%--<jsp:useBean id="TypeOfArray" type="ru.inventarit.model.Equipment"/>--%>
+                        <%--  @variable id="TypeOfArray" type="Array"--%>
+                        <c:set var="TypeOfArray" value="${TypeOfArray}"/>
+                        <div class="form-group">
+                            <label for="typeOf" class="col-form-label">Тип</label>
+                            <p>
+                            <select for="typeOf" class="col-form-label" id="typeOf" name="typeOf">
+                                <%--<input type="text" class="form-control" id="typeOf" name="typeOf" placeholder="typeOf">--%>
+                                <c:forEach items="${TypeOfArray}" var="friend">
+                                    <option value="<c:out value="${friend}"/>"><c:out value="${friend}"/></option>
+                                </c:forEach>
+                            </select>
+                            </p>
+                        </div>
+
                     </div>
+
 
                 </form>
             </div>
             <div class="modal-footer">
-                <%--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeNoty()">--%>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeNoty()">
                     <span class="fa fa-close"></span>Отмена
                 </button>

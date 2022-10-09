@@ -17,21 +17,21 @@ public enum TypeOf  {
     //OTHER_STATE_REGISTRATION_TO_ARTICLE_130("Прочие объекты, требующие государственной регистрации, относимые статьей 130 ГК РФ к недвижимости"),
     OTHER("Другие");
 
-    private final String name;
+    private String title;
 
-    TypeOf(String name) {
-        this.name = name;
+    TypeOf(String title) {
+        this.title = title;
     }
 
-    @Override
+ /*   @Override
     public String toString() {
         return "TypeOf{" +
                 "name='" + name + '\'' +
                 '}';
-    }
+    }*/
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
 

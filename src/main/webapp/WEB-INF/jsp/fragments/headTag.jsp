@@ -19,8 +19,6 @@
     <%--Только для таблиц--%>
     <script src="webjars/jquery/3.6.1/jquery.min.js" defer></script>
     <script src="webjars/bootstrap/5.2.0/js/bootstrap.min.js" defer></script>
-<%--    <script src="webjars/datatables/1.12.1/js/jquery.dataTables.min.js" defer></script>--%>
-   <%-- <script src="webjars/bootstrap/5.2.0/js/bootstrap.min.js" defer></script>--%>
     <script src="webjars/datatables/1.12.1/js/jquery.dataTables.min.js" defer></script>
     <script src="webjars/datatables/1.12.1/js/dataTables.bootstrap5.min.js" defer></script>
     <script src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
