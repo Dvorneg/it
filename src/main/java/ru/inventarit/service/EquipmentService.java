@@ -18,10 +18,10 @@ public class EquipmentService {
         return repository.findAll();
     }
 
-    public ResponseEntity<Equipment> getById(int id)
+    public Equipment getById(int id)
     {
-        return ResponseEntity.of(repository.findById(id));
-
+        //optional return ResponseEntity.of(repository.getReferenceById(id));
+        return repository.getReferenceById(id);
     }
 
 /*    @Transactional
