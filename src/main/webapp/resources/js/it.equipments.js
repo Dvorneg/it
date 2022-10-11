@@ -56,45 +56,6 @@ function makeEditable(datatableOpts) {
 }
 
 
- $(document).ready(function () {
-     $(function () {
-         makeEditable({
-             "columns": [
-                 {
-                     "data": "id"
-                 },
-                 {
-                     "data": "inventoryNumber"
-                 },
-                 {
-                     "data": "name"
-                 },
-                 {
-                     "data": "description"
-                 },
-                 {
-                     "data": "company"
-                 },
-                 {
-                     "data": "typeOf"
-                 },
-                 {
-                     "data": "releaseDate"
-                 }
-             ]
-             ,
-             "order": [
-                 [
-                     0,
-                     "asc"
-                 ]
-             ]
-
-         });
-     });
- });
-
-
 /*function updateRow(id) {
     form.find(":input").val("");
     $("#modalTitle").html("editTitle");
@@ -157,3 +118,53 @@ function failNoty(jqXHR) {
     });
     failedNote.show()
 }
+
+
+$(document).ready(function () {
+    $(function () {
+        makeEditable({
+            "columns": [
+                {
+                    "data": "id"
+                },
+                {
+                    "data": "inventoryNumber"
+                },
+                {
+                    "data": "name"
+                },
+                {
+                    "data": "description"
+                },
+                {
+                    "data": "company"
+                },
+                {
+                    "data": "typeOf"
+                },
+                {
+                    "data": "releaseDate"
+                }
+            ]
+            ,
+            "order": [
+                [
+                    0,
+                    "asc"
+                ]
+            ]
+
+        });
+
+    });
+
+    $('#releaseDate').datetimepicker({
+        language:'ru',
+        timepicker: false,
+        format: 'y-m-d',
+        formatDate: 'y-m-d',
+    });
+
+});
+
+

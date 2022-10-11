@@ -2,6 +2,7 @@ package ru.inventarit.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,7 +20,8 @@ public class Equipment extends NamedEntity{
 /*  Дата принятия?*/
     @Column(name = "release_date", nullable = false )
     //Переопределить, если нужно будет время, columnDefinition = "timestamp default now()")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yy-MM-dd")
+    @DateTimeFormat(pattern = "yy-MM-dd")
     private LocalDate releaseDate= LocalDate.now();
 
     //местоположение

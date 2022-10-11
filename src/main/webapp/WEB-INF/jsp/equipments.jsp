@@ -11,6 +11,11 @@
 <div class="jumbotron pt-4">
     <div class="container">
         <h3 class="text-center">Оборудование</h3>
+
+        <%--        <div class="ui-widget">
+                    <label for="datep">Дата: </label><input id="datep"/>
+                </div>--%>
+
         <button class="btn btn-primary" onclick="add()">
             <span class="fa fa-plus"></span>
             Добавить
@@ -55,11 +60,11 @@
                                placeholder="name">
                     </div>
 
-                    <%--                    <div class="form-group">
-                                            <label for="release_date" class="col-form-label">release_date</label>
-                                            <input class="form-control" id="release_date" name="release_date" autocomplete="off"
-                                                   placeholder="release_date">
-                                        </div>--%>
+                    <div class="form-group">
+                        <label for="releaseDate" class="col-form-label">releaseDate</label>
+                        <input class="form-control" id="releaseDate" name="releaseDate" autocomplete="off"
+                               placeholder="releaseDate">
+                    </div>
 
                     <div class="form-group">
                         <label for="description" class="col-form-label">description</label>
@@ -92,12 +97,12 @@
                         <div class="form-group">
                             <label for="typeOf" class="col-form-label">Тип</label>
                             <p>
-                            <select for="typeOf" class="col-form-label" id="typeOf" name="typeOf">
-                                <%--<input type="text" class="form-control" id="typeOf" name="typeOf" placeholder="typeOf">--%>
-                                <c:forEach items="${TypeOfArray}" var="friend">
-                                    <option value="<c:out value="${friend}"/>"><c:out value="${friend}"/></option>
-                                </c:forEach>
-                            </select>
+                                <select for="typeOf" class="col-form-label" id="typeOf" name="typeOf">
+                                    <%--<input type="text" class="form-control" id="typeOf" name="typeOf" placeholder="typeOf">--%>
+                                    <c:forEach items="${TypeOfArray}" var="friend">
+                                        <option value="<c:out value="${friend}"/>"><c:out value="${friend}"/></option>
+                                    </c:forEach>
+                                </select>
                             </p>
                         </div>
 

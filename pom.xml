@@ -20,6 +20,7 @@
         <webjars-jquery.version>3.6.1</webjars-jquery.version>
         <webjars-noty.version>3.1.4</webjars-noty.version>
         <webjars-datatables.version>1.12.1</webjars-datatables.version>
+        <webjars-datetimepicker.version>2.5.20-1</webjars-datetimepicker.version>
     </properties>
     <dependencies>
        <!-- <dependency>
@@ -40,6 +41,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <version>42.5.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -116,11 +118,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>datetimepicker</artifactId>
             <version>${webjars-datetimepicker.version}</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.webjars.bower</groupId>
             <artifactId>noty</artifactId>
