@@ -159,11 +159,13 @@ $(document).ready(function () {
     });
 
     $('#releaseDate').datetimepicker({
-        language:'ru',
+        /*language:'ru',*/
         timepicker: false,
         format: 'y-m-d',
         formatDate: 'y-m-d',
     });
+
+    $.datetimepicker.setLocale('ru');
 
 });
 
