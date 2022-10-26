@@ -93,9 +93,9 @@
 
                     <div class="form-group">
 
-                            <%--<label for="typeOf" class="col-form-label">Тип</label>--%>
-                           <input type="hidden" class="form-control" id="typeOf" name="typeOf"
-                                   placeholder="typeOf">
+                        <%--<label for="typeOf" class="col-form-label">Тип</label>--%>
+                        <input type="hidden" class="form-control" id="typeOf" name="typeOf"
+                               placeholder="typeOf">
 
                         <%--<jsp:useBean id="TypeOfArray" type="ru.inventarit.model.Equipment"/>--%>
                         <%--  @variable id="TypeOfArray" type="Array"--%>
@@ -106,11 +106,12 @@
 
                             <p>
                                 <%--<select class="col-form-label" id="typeOfArray" name="typeOfArray" onchange="alert(this.value)"> + --%>
-                                <select class="col-form-label" id="typeOfArray" name="typeOfArray" onchange=onChangeTypeOfArray(this.value) >
+                                <select class="col-form-label" id="typeOfArray" name="typeOfArray"
+                                        onchange=onChangeTypeOfArray(this.value)>
 
-                                        <c:forEach items="${TypeOfArray}" var="friend">
-                                            <option value="<c:out value="${friend}"/>"><c:out value="${friend}"/></option>
-                                        </c:forEach>
+                                    <c:forEach items="${TypeOfArray}" var="friend">
+                                        <option value="<c:out value="${friend}"/>"><c:out value="${friend}"/></option>
+                                    </c:forEach>
 
                                 </select>
                             </p>
