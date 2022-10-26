@@ -1,9 +1,7 @@
 package ru.inventarit.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.repository.EquipmentRepository;
 
@@ -33,5 +31,10 @@ public class EquipmentService {
         return repository.save(equipment);
     }
 
+
+    public void update(Equipment equipment) {
+        //Check null, ahterUser
+        repository.save(equipment);
+    }
 
 }

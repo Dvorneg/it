@@ -38,12 +38,11 @@ public abstract class AbstractEquipmentController {
         return service.create(equipment);
     }
 
-/*    public void update(Equipment equipment, int id) {
+    public void update(Equipment equipment) {
         //int userId = SecurityUtil.authUserId();
         log.info("update {} ", equipment);
-        //assureIdConsistent(equipment, id);
         service.update(equipment);
-    }*/
+    }
 
 
 }

@@ -28,8 +28,14 @@ public class EquipmentUIController extends AbstractEquipmentController{
         if (equipment.isNew()) {
             super.create(equipment);
         } else {
-            //update(equipment, equipment.getId());
+            super.update(equipment);
         }
+    }
+
+    @Override
+    @GetMapping("/{id}")
+    public Equipment get(@PathVariable int id) {
+        return super.get(id);
     }
 
 /*    public Equipment create(Equipment equipment) {

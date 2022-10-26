@@ -31,7 +31,8 @@
                 <th>Фирма-производитель</th>
                 <th>Тип</th>
                 <th>Дата принятия</th>
-
+                <th>изменить</th>
+                <th>удалить</th>
             </tr>
             </thead>
         </table>
@@ -51,8 +52,8 @@
             <div class="modal-body">
                 <form id="detailsForm">
 
-                    <%--<input type="hidden" id="id" name="id">--%>
-                    <input id="id" name="id">
+                    <input type="hidden" id="id" name="id">
+                    <%--<input id="id" name="id">--%>
 
                     <div class="form-group">
                         <label for="name" class="col-form-label">Модель</label>
@@ -91,24 +92,31 @@
                     </div>
 
                     <div class="form-group">
+
+                            <%--<label for="typeOf" class="col-form-label">Тип</label>--%>
+                           <input type="hidden" class="form-control" id="typeOf" name="typeOf"
+                                   placeholder="typeOf">
+
                         <%--<jsp:useBean id="TypeOfArray" type="ru.inventarit.model.Equipment"/>--%>
                         <%--  @variable id="TypeOfArray" type="Array"--%>
                         <c:set var="TypeOfArray" value="${TypeOfArray}"/>
+
                         <div class="form-group">
-                            <label for="typeOf" class="col-form-label">Тип</label>
+                            <label class="col-form-label">Тип</label>
+
                             <p>
-                                <select for="typeOf" class="col-form-label" id="typeOf" name="typeOf">
-                                    <%--<input type="text" class="form-control" id="typeOf" name="typeOf" placeholder="typeOf">--%>
-                                    <c:forEach items="${TypeOfArray}" var="friend">
-                                        <option value="<c:out value="${friend}"/>"><c:out value="${friend}"/></option>
-                                    </c:forEach>
+                                <%--<select class="col-form-label" id="typeOfArray" name="typeOfArray" onchange="alert(this.value)"> + --%>
+                                <select class="col-form-label" id="typeOfArray" name="typeOfArray" onchange=onChangeTypeOfArray(this.value) >
+
+                                        <c:forEach items="${TypeOfArray}" var="friend">
+                                            <option value="<c:out value="${friend}"/>"><c:out value="${friend}"/></option>
+                                        </c:forEach>
+
                                 </select>
                             </p>
                         </div>
 
                     </div>
-
-
                 </form>
             </div>
             <div class="modal-footer">

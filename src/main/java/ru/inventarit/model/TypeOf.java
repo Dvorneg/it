@@ -23,10 +23,11 @@ public enum TypeOf  {
         this.title = title;
     }
 
- /*   @Override
-    public String toString() {
+  @Override
+  public String toString() {return name();}
+/*    public String toString() {
         return "TypeOf{" +
-                "name='" + name + '\'' +
+                "title='" + title + '\'' +
                 '}';
     }*/
 

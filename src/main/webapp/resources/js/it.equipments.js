@@ -1,4 +1,4 @@
-const equipmentAjaxUrl = "/profile/equipments";
+const equipmentAjaxUrl = "/profile/equipments/";
 let form;
 const modal = new bootstrap.Modal(document.querySelector('#editRow'));
 
@@ -54,20 +54,6 @@ function makeEditable(datatableOpts) {
             xhr.setRequestHeader(header, token);
         });*/
 }
-
-
-/*function updateRow(id) {
-    form.find(":input").val("");
-    $("#modalTitle").html("editTitle");
-    $.get(ctx.ajaxUrl + id, function (data) {
-        $.each(data, function (key, value) {
-            form.find("input[name='" + key + "']").val(value);
-        });
-        $('#editRow').modal();
-    });
-}*/
-
-
 let failedNote;
 
 //После кнопки "добавить" (открытие модального окна)
@@ -76,6 +62,22 @@ function add() {
     form.find(":input").val("");
     modal.show();
 }
+
+/*После кнопки "изменить" (открытие модального окна)*/
+function updateRow(id) {
+
+    form.find(":input").val("");
+    $("#modalTitle").html("Изменить оборудование.");
+    $.get(ctx.ajaxUrl + id, function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        /*Установка текущего значения в списке перечислений*/
+        $('#typeOfArray').val($('#typeOf').val());
+        modal.show();
+    });
+}
+
 
 //После кнопки "Сохранить" (модального окна)
 function save() {
@@ -90,6 +92,7 @@ function save() {
     });
 }
 
+/*Всплывающие уведомления*/
 function closeNoty() {
     if (failedNote) {
         failedNote.close();
@@ -120,6 +123,25 @@ function failNoty(jqXHR) {
 }
 
 
+/*Кнопки, вывод значков*/
+function renderEditBtn(data, type, row) {
+    if (type === "display") {
+       /* return "<a onclick='updateRow(" + row.id + ");'><span class='fa fa-pencil'></span></a>";*/
+        return "<a onclick='updateRow(" + row.id + ");'><span class='fa fa-edit'></span></a>";
+    }
+}
+
+function renderDeleteBtn(data, type, row) {
+    if (type === "display") {
+        return "<a onclick='deleteRow(" + row.id + ");'><span class='fa fa-remove'></span></a>";
+    }
+}
+
+function onChangeTypeOfArray(text) {
+    /*alert(text);*/
+    $('#typeOf').val(text);
+}
+
 $(document).ready(function () {
     $(function () {
         makeEditable({
@@ -144,6 +166,16 @@ $(document).ready(function () {
                 },
                 {
                     "data": "releaseDate"
+                },
+                {
+                    "render": renderEditBtn,
+                    "defaultContent": "",
+                    "orderable": false
+                },
+                {
+                    "render": renderDeleteBtn,
+                    "defaultContent": "",
+                    "orderable": false
                 }
             ]
             ,
@@ -152,7 +184,11 @@ $(document).ready(function () {
                     0,
                     "asc"
                 ]
-            ]
+            ],
+            "createdRow": function (row, data, dataIndex) {
+               /* Тут можно при создании применить стили, например расркасить красным, где data-user-excess css  color: red;
+                    $(row).attr("data-user-excess", data.excess);*/
+            }
 
         });
 
