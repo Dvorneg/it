@@ -6,4 +6,6 @@ import ru.inventarit.model.Equipment;
 
 @Transactional(readOnly = true)
 public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
+
+
 }

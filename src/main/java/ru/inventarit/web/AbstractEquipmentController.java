@@ -17,13 +17,13 @@ public abstract class AbstractEquipmentController {
         //int userId = SecurityUtil.authUserId();
         log.info("get equipment {} ", id);
         return service.getById(id);
-    }
+    };
 
-/*    public void delete(int id) {
+    public void delete(int id) {
         //int userId = SecurityUtil.authUserId();
         log.info("delete equipment {} ", id);
         service.delete(id);
-    }*/
+    }
 
     public List<Equipment> getAll() {
         //int userId = SecurityUtil.authUserId();

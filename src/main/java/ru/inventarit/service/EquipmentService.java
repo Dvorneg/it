@@ -37,4 +37,9 @@ public class EquipmentService {
         repository.save(equipment);
     }
 
+    public void delete(int id) {
+        //Check null, ahterUser
+        repository.delete(repository.getReferenceById(id));
+    }
+
 }

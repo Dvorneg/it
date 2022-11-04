@@ -38,6 +38,14 @@ public class EquipmentUIController extends AbstractEquipmentController{
         return super.get(id);
     }
 
+    @Override
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
+        super.delete(id);
+    }
+
+
 /*    public Equipment create(Equipment equipment) {
         log.info("create {}", equipment);
         //checkNew(equipment);

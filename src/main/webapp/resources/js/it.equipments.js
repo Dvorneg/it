@@ -78,6 +78,19 @@ function updateRow(id) {
     });
 }
 
+/*После кнопки "удалить"*/
+function deleteRow(id) {
+    if (confirm('Удалить запись?')) {
+        $.ajax({
+            url: ctx.ajaxUrl + id,
+            type: "DELETE"
+        }).done(function () {
+            ctx.updateTable();
+            successNoty("deleted");
+        });
+    }
+}
+
 
 //После кнопки "Сохранить" (модального окна)
 function save() {
