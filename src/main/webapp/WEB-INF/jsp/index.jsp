@@ -22,8 +22,11 @@
         <h2>вода вода</h2>
     </div>
 </div>
+<div class="container">
+    <spring:message code="welcome.text"/>
+   <%-- "#{welcome.text}"--%>
+</div>
 
-<%--<script type="text/javascript" src="webjars/bootstrap/4.6.1/js/bootstrap.min.js"></script>--%>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>

@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/main.css"/>">
     <link rel="stylesheet" href="webjars/bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">    <%--Красивый плюс--%>
+    <link rel="stylesheet" href="webjars/popper.js/2.9.3/umd/popper.min.js"> <%--Выпадающее меню--%>
     <link rel="stylesheet" href="webjars/datatables/1.12.1/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
-    <link rel="stylesheet" href="webjars/datetimepicker/2.5.20-1/jquery.datetimepicker.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/> <%--всплывающие подсказки--%>
+    <link rel="stylesheet" href="webjars/datetimepicker/2.5.20-1/jquery.datetimepicker.css"> <%--календарь--%>
     <link rel="shortcut icon" href="resources/images/favicon.png">
 
     <%--Только для таблиц--%>
+    <script src="webjars/popper.js/2.9.3/umd/popper.min.js" defer></script>
     <script src="webjars/jquery/3.6.1/jquery.min.js" defer></script>
     <script src="webjars/bootstrap/5.2.0/js/bootstrap.min.js" defer></script>
     <script src="webjars/datatables/1.12.1/js/jquery.dataTables.min.js" defer></script>
