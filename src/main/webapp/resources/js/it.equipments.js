@@ -1,6 +1,54 @@
 const equipmentAjaxUrl = "/profile/equipments/";
 let form;
 const modal = new bootstrap.Modal(document.querySelector('#editRow'));
+let locale;
+const datatableOpts={
+    "columns": [
+        {
+            "data": "id"
+        },
+        {
+            "data": "inventoryNumber"
+        },
+        {
+            "data": "name"
+        },
+        {
+            "data": "description"
+        },
+        {
+            "data": "company"
+        },
+        {
+            "data": "typeOf"
+        },
+        {
+            "data": "releaseDate"
+        },
+        {
+            "render": renderEditBtn,
+            "defaultContent": "",
+            "orderable": false
+        },
+        {
+            "render": renderDeleteBtn,
+            "defaultContent": "",
+            "orderable": false
+        }
+    ]
+    ,
+    "order": [
+        [
+            0,
+            "asc"
+        ]
+    ],
+    "createdRow": function (row, data, dataIndex) {
+        /* Тут можно при создании применить стили, например расркасить красным, где data-user-excess css  color: red;
+             $(row).attr("data-user-excess", data.excess);*/
+    }
+
+};
 
 // https://stackoverflow.com/a/5064235/548473
 const ctx = {
@@ -14,14 +62,39 @@ const ctx = {
     }
 }
 
-
 function updateTableByData(data) {
     ctx.datatableApi.clear().rows.add(data).draw();
 }
 
+function getLocale(){
 
+    $.ajax({
+        type: "GET",
+        url: "/locale",
+        success: function(data) {
+            locale = data;
+            //Получаем язык и только потом загружаем таблицу и календарь
+            makeEditable(datatableOpts);
+            $.datetimepicker.setLocale(locale);
+
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            makeEditable(datatableOpts);
+        }
+    });
+
+}
 
 function makeEditable(datatableOpts) {
+
+    let urlLocale;
+    if (locale === "ru")
+    {
+        urlLocale="resources/dataTable/ru.json"
+    } else {
+        urlLocale="resources/dataTable/en.json"
+    }
 
     ctx.datatableApi = $("#datatable11").DataTable(
         // https://api.jquery.com/jquery.extend/#jQuery-extend-deep-target-object1-objectN
@@ -34,11 +107,14 @@ function makeEditable(datatableOpts) {
                 "paging": true,
                 "info": true,
                "language": {
-                    url:"resources/dataTable/ru.json"
+                    //url:"resources/dataTable/ru.json"
+                    url:urlLocale
                 }
                 //, buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
             }
         ));
+
+    //alert ( ${pageContext.response.locale} );
     form = $('#detailsForm');
 
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
@@ -128,7 +204,8 @@ function failNoty(jqXHR) {
     var errorInfo = jqXHR.responseJSON;
     failedNote = new Noty({
         //text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.error+("<br>"),
+        //text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.error+("<br>"),
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> " +jqXHR.text+ "<br>" +("<br>"),
         type: "error",
         layout: "bottomRight"
     });
@@ -156,56 +233,12 @@ function onChangeTypeOfArray(text) {
 }
 
 $(document).ready(function () {
-    $(function () {
-        makeEditable({
-            "columns": [
-                {
-                    "data": "id"
-                },
-                {
-                    "data": "inventoryNumber"
-                },
-                {
-                    "data": "name"
-                },
-                {
-                    "data": "description"
-                },
-                {
-                    "data": "company"
-                },
-                {
-                    "data": "typeOf"
-                },
-                {
-                    "data": "releaseDate"
-                },
-                {
-                    "render": renderEditBtn,
-                    "defaultContent": "",
-                    "orderable": false
-                },
-                {
-                    "render": renderDeleteBtn,
-                    "defaultContent": "",
-                    "orderable": false
-                }
-            ]
-            ,
-            "order": [
-                [
-                    0,
-                    "asc"
-                ]
-            ],
-            "createdRow": function (row, data, dataIndex) {
-               /* Тут можно при создании применить стили, например расркасить красным, где data-user-excess css  color: red;
-                    $(row).attr("data-user-excess", data.excess);*/
-            }
 
-        });
+    getLocale();
 
-    });
+/*    $(function () {
+        makeEditable(datatableOpts);
+    });*/
 
     $('#releaseDate').datetimepicker({
         /*language:'ru',*/
@@ -214,7 +247,6 @@ $(document).ready(function () {
         formatDate: 'y-m-d',
     });
 
-    $.datetimepicker.setLocale('ru');
 
 });
 

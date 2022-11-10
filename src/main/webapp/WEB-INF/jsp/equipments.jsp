@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html lang="ru">
+<html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <script src="resources/js/it.equipments.js" defer></script>
@@ -136,4 +136,7 @@
 
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+
+<%--<script>alert('${page language}')</script>--%>
+<%--<script defer>setLocale('${pageContext.response.locale.toString()}')</script>--%>
 </html>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<html lang="ru">
+<html>
 
 <head>
 <jsp:include page="fragments/headTag.jsp"/>
@@ -26,6 +26,10 @@
     <spring:message code="welcome.text"/>
    <%-- "#{welcome.text}"--%>
 </div>
+
+<%--<% out.println("<script> alert ('Зарегистрировано успешно'); window.location.href ('index.jsp'); </script>"); %>--%>
+<%--<script>alert("ru")</script>--%>
+<%--<script>alert('${pageContext.response.locale.toString()}')</script>--%>
 
 <jsp:include page="fragments/footer.jsp"/>
 </body>
