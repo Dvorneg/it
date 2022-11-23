@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.inventarit.model.Equipment;
+import ru.inventarit.to.EquipmentTo;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class EquipmentRestController extends AbstractEquipmentController{
     static final String REST_URL = "/api/equipments";
 
     @GetMapping()
-    public List<Equipment> getAll() {
+    public List<EquipmentTo> getAll() {
         log.info("getAll equipments");
         return super.getAll();
     }

@@ -2,7 +2,7 @@ const equipmentAjaxUrl = "/profile/equipments/";
 let form;
 const modal = new bootstrap.Modal(document.querySelector('#editRow'));
 let locale;
-const datatableOpts={
+const datatableOpts = {
     "columns": [
         {
             "data": "id"
@@ -20,7 +20,12 @@ const datatableOpts={
             "data": "company"
         },
         {
-            "data": "typeOf"
+
+            "data": "typeOf",
+            "render": function (data) {
+                return data;
+
+            }
         },
         {
             "data": "releaseDate"
@@ -66,19 +71,19 @@ function updateTableByData(data) {
     ctx.datatableApi.clear().rows.add(data).draw();
 }
 
-function getLocale(){
+function getLocale() {
 
     $.ajax({
         type: "GET",
         url: "/locale",
-        success: function(data) {
+        success: function (data) {
             locale = data;
             //Получаем язык и только потом загружаем таблицу и календарь
             makeEditable(datatableOpts);
             $.datetimepicker.setLocale(locale);
 
         },
-        error: function(xhr, ajaxOptions, thrownError) {
+        error: function (xhr, ajaxOptions, thrownError) {
             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             makeEditable(datatableOpts);
         }
@@ -89,11 +94,10 @@ function getLocale(){
 function makeEditable(datatableOpts) {
 
     let urlLocale;
-    if (locale === "ru")
-    {
-        urlLocale="resources/dataTable/ru.json"
+    if (locale === "ru") {
+        urlLocale = "resources/dataTable/ru.json"
     } else {
-        urlLocale="resources/dataTable/en.json"
+        urlLocale = "resources/dataTable/en.json"
     }
 
     ctx.datatableApi = $("#datatable11").DataTable(
@@ -106,9 +110,9 @@ function makeEditable(datatableOpts) {
                 },
                 "paging": true,
                 "info": true,
-               "language": {
+                "language": {
                     //url:"resources/dataTable/ru.json"
-                    url:urlLocale
+                    url: urlLocale
                 }
                 //, buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
             }
@@ -130,6 +134,7 @@ function makeEditable(datatableOpts) {
             xhr.setRequestHeader(header, token);
         });*/
 }
+
 let failedNote;
 
 //После кнопки "добавить" (открытие модального окна)
@@ -205,7 +210,7 @@ function failNoty(jqXHR) {
     failedNote = new Noty({
         //text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
         //text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.error+("<br>"),
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> " +jqXHR.text+ "<br>" +("<br>"),
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> " + jqXHR.text + "<br>" + ("<br>"),
         type: "error",
         layout: "bottomRight"
     });
@@ -216,7 +221,7 @@ function failNoty(jqXHR) {
 /*Кнопки, вывод значков*/
 function renderEditBtn(data, type, row) {
     if (type === "display") {
-       /* return "<a onclick='updateRow(" + row.id + ");'><span class='fa fa-pencil'></span></a>";*/
+        /* return "<a onclick='updateRow(" + row.id + ");'><span class='fa fa-pencil'></span></a>";*/
         return "<a onclick='updateRow(" + row.id + ");'><span class='fa fa-edit'></span></a>";
     }
 }
@@ -233,12 +238,7 @@ function onChangeTypeOfArray(text) {
 }
 
 $(document).ready(function () {
-
     getLocale();
-
-/*    $(function () {
-        makeEditable(datatableOpts);
-    });*/
 
     $('#releaseDate').datetimepicker({
         /*language:'ru',*/
@@ -246,7 +246,6 @@ $(document).ready(function () {
         format: 'y-m-d',
         formatDate: 'y-m-d',
     });
-
 
 });
 

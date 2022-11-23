@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.inventarit.model.Equipment;
+import ru.inventarit.to.EquipmentTo;
 
 
 import java.util.List;
@@ -17,9 +18,11 @@ public class EquipmentUIController extends AbstractEquipmentController{
     static final String URL = "/profile/equipments";
 
     @GetMapping("")
-    public List<Equipment> getAll() {
+    public List<EquipmentTo> getAll() {
         log.info("EquipmentUIController getAll");
-        return super.getAll();
+        //return super.getAll();
+        //return EquipmentsUtil.filterByPredicate( super.getAll() );
+        return  super.getAll() ;
     }
 
     @PostMapping
@@ -47,13 +50,13 @@ public class EquipmentUIController extends AbstractEquipmentController{
     }
 
 
-    @GetMapping(   value = "/locale")
+/*    @GetMapping(   value = "/locale")
        public String getLocale() {
         log.info("locale страница");
         //model.addAttribute("TypeOfArray", getAllTypeOf());
         return LocaleContextHolder.getLocale().getLanguage();
         //return "ru";
-    }
+    }*/
 
 /*    public Equipment create(Equipment equipment) {
         log.info("create {}", equipment);

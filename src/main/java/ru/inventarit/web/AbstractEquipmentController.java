@@ -5,7 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.service.EquipmentService;
-
+import ru.inventarit.to.EquipmentTo;
+import ru.inventarit.util.EquipmentsUtil;
 import java.util.List;
 
 @Slf4j
@@ -25,10 +26,11 @@ public abstract class AbstractEquipmentController {
         service.delete(id);
     }
 
-    public List<Equipment> getAll() {
+    //Collection-> list
+    public List<EquipmentTo> getAll() {
         //int userId = SecurityUtil.authUserId();
         log.info("getAll ");
-        return service.getAll();
+        return EquipmentsUtil.filterByPredicate(service.getAll());
     }
 
     public Equipment create(Equipment equipment) {

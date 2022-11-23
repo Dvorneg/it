@@ -14,9 +14,7 @@ public class UniversalController {
 
     @GetMapping(   value = "/locale")
     public String getLocale() {
-        log.info("locale страница");
-        //model.addAttribute("TypeOfArray", getAllTypeOf());
+        log.info("locale запрос, возвр=" + LocaleContextHolder.getLocale().getLanguage() ) ;
         return LocaleContextHolder.getLocale().getLanguage();
-        //return "ru";
     }
 }

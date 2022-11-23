@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.repository.EquipmentRepository;
-
 import java.util.List;
 
 @Service
@@ -31,14 +30,13 @@ public class EquipmentService {
         return repository.save(equipment);
     }
 
-
     public void update(Equipment equipment) {
-        //Check null, ahterUser
+        //Check null, otherUser
         repository.save(equipment);
     }
 
     public void delete(int id) {
-        //Check null, ahterUser
+        //Check null, otherUser
         repository.delete(repository.getReferenceById(id));
     }
 

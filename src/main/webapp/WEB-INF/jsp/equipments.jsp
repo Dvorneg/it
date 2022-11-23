@@ -109,8 +109,10 @@
                                 <select class="col-form-label" id="typeOfArray" name="typeOfArray"
                                         onchange=onChangeTypeOfArray(this.value)>
 
-                                    <c:forEach items="${TypeOfArray}" var="friend">
-                                        <option value="<c:out value="${friend}"/>"><c:out value="${friend}"/></option>
+                                    <c:forEach items="${TypeOfArray}" var="field">
+                                        <%--<option value="<c:out value="${field.toString()}"/>">--%>
+                                        <%--    <c:set var="locale" value="${pageContext.response.locale}"/>--%>
+                                        <option value="<c:out value="${field.toString()}"/>"><c:out value="${field.getTitle()}"/></option>
                                     </c:forEach>
 
                                 </select>
