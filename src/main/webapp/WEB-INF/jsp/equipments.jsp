@@ -10,7 +10,7 @@
 
 <div class="jumbotron pt-4">
     <div class="container">
-        <h3 class="text-center">Оборудование</h3>
+        <h3 class="text-center"><spring:message code="equipments.header"/></h3>
 
         <%--        <div class="ui-widget">
                     <label for="datep">Дата: </label><input id="datep"/>
@@ -18,21 +18,21 @@
 
         <button class="btn btn-primary" onclick="add()">
             <span class="fa fa-plus"></span>
-            Добавить
+            <spring:message code="common.add"/>
         </button>
         <table class="table table-striped" id="datatable11">
             <thead>
             <tr>
                 <th>id</th>
-                <th>Инв №</th>
-                <th>Модель</th>
+                <th><spring:message code="equipments.inventoryNumber"/></th>
+                <th><spring:message code="equipments.model"/></th>
                 <%--name--%>
-                <th>Описание</th>
-                <th>Фирма-производитель</th>
-                <th>Тип</th>
-                <th>Дата принятия</th>
-                <th>изменить</th>
-                <th>удалить</th>
+                <th><spring:message code="equipments.description"/></th>
+                <th><spring:message code="equipments.company"/> </th> <%--Фирма-производитель--%>
+                <th><spring:message code="equipments.type"/> </th>
+                <th><spring:message code="equipments.releaseDate"/></th>
+                <th><spring:message code="common.change"/> </th>
+                <th><spring:message code="common.delete"/> </th>
             </tr>
             </thead>
         </table>
@@ -56,39 +56,39 @@
                     <%--<input id="id" name="id">--%>
 
                     <div class="form-group">
-                        <label for="name" class="col-form-label">Модель</label>
+                        <label for="name" class="col-form-label"><spring:message code="equipments.model"/> </label>
                         <input class="form-control" id="name" name="name"
-                               placeholder="name">
+                               placeholder="<spring:message code="equipments.model"/>">
                     </div>
 
                     <div class="form-group">
-                        <label for="releaseDate" class="col-form-label">releaseDate</label>
+                        <label for="releaseDate" class="col-form-label"> <spring:message code="equipments.releaseDate"/> </label>
                         <input class="form-control" id="releaseDate" name="releaseDate" autocomplete="off"
-                               placeholder="releaseDate">
+                               placeholder="<spring:message code="equipments.releaseDate"/>">
                     </div>
 
                     <div class="form-group">
-                        <label for="description" class="col-form-label">description</label>
+                        <label for="description" class="col-form-label"><spring:message code="equipments.description"/> </label>
                         <input type="text" class="form-control" id="description" name="description"
-                               placeholder="description">
+                               placeholder="<spring:message code="equipments.description"/>">
                     </div>
 
                     <div class="form-group">
-                        <label for="inventoryNumber" class="col-form-label">inventoryNumber</label>
+                        <label for="inventoryNumber" class="col-form-label"><spring:message code="equipments.inventoryNumber"/></label>
                         <input type="text" class="form-control" id="inventoryNumber" name="inventoryNumber"
-                               placeholder="inventoryNumber">
+                               placeholder="<spring:message code="equipments.inventoryNumber"/>">
                     </div>
 
                     <div class="form-group">
-                        <label for="company" class="col-form-label">company</label>
+                        <label for="company" class="col-form-label"> <spring:message code="equipments.company"/> </label>
                         <input type="text" class="form-control" id="company" name="company"
-                               placeholder="company">
+                               placeholder="<spring:message code="equipments.company"/>">
                     </div>
 
                     <div class="form-group">
-                        <label for="responsiblePerson" class="col-form-label">Ответственный</label>
+                        <label for="responsiblePerson" class="col-form-label"><spring:message code="equipments.responsiblePerson"/></label>
                         <input type="text" class="form-control" id="responsiblePerson" name="responsiblePerson"
-                               placeholder="responsiblePerson">
+                               placeholder="<spring:message code="equipments.responsiblePerson"/>">
                     </div>
 
                     <div class="form-group">
@@ -102,7 +102,7 @@
                         <c:set var="TypeOfArray" value="${TypeOfArray}"/>
 
                         <div class="form-group">
-                            <label class="col-form-label">Тип</label>
+                            <label class="col-form-label"> <spring:message code="equipments.type"/>  </label>
 
                             <p>
                                 <%--<select class="col-form-label" id="typeOfArray" name="typeOfArray" onchange="alert(this.value)"> + --%>
@@ -124,12 +124,12 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeNoty()">
-                    <span class="fa fa-close"></span>Отмена
+                    <span class="fa fa-close"></span> <spring:message code="common.cancel"/>
                 </button>
 
                 <button type="button" class="btn btn-primary" onclick="save()">
                     <span class="fa fa-check"></span>
-                    save
+                    <spring:message code="common.save"/>
                 </button>
             </div>
         </div>

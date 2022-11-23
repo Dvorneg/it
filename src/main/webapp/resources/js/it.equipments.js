@@ -139,7 +139,7 @@ let failedNote;
 
 //После кнопки "добавить" (открытие модального окна)
 function add() {
-    $("#modalTitle").html("Добавить оборудование.");
+    $("#modalTitle").html("Добавить оборудование");
     form.find(":input").val("");
     modal.show();
 }
