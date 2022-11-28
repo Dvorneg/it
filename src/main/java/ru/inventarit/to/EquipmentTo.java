@@ -13,16 +13,12 @@ public class EquipmentTo extends NamedTo{
 
      LocalDate releaseDate;
 
-    //местоположение
      String description;
 
-    //фирма производитель (manufacturer company)
      String company;
 
-    //МОЛ
      String responsiblePerson;
 
-    //Группа ОС ->enum - > Переделаем в нужный язык
      String typeOf;
 
     //Inv. No.
@@ -37,6 +33,5 @@ public class EquipmentTo extends NamedTo{
         this.typeOf = typeOf.getTitle();
         this.inventoryNumber = inventoryNumber;
     }
-
 
 }

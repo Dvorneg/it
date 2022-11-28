@@ -1,7 +1,6 @@
 package ru.inventarit.web;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -48,15 +47,6 @@ public class EquipmentUIController extends AbstractEquipmentController{
     public void delete(@PathVariable int id) {
         super.delete(id);
     }
-
-
-/*    @GetMapping(   value = "/locale")
-       public String getLocale() {
-        log.info("locale страница");
-        //model.addAttribute("TypeOfArray", getAllTypeOf());
-        return LocaleContextHolder.getLocale().getLanguage();
-        //return "ru";
-    }*/
 
 /*    public Equipment create(Equipment equipment) {
         log.info("create {}", equipment);

@@ -40,7 +40,7 @@
 </div>
 
 
-<%--Модальное окно--%>
+<%--modal window--%>
 <div class="modal fade" tabindex="-1" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">

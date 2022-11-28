@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class EquipmentsUtil {
 
-    //Для выбора типа, передаём в форму все типы, для 2-х языков
+    //two language
     public static TypeOf[] getAllTypeOf() {
         return TypeOf.values();
     }

@@ -38,11 +38,7 @@ public enum TypeOf  implements Serializable {
 
     TypeOf(Map lang) {
         this.lang = lang;
-        //this.en = en;
     }
-/*    TypeOf(String en) {
-        this.en = en;
-    }*/
 
   @Override
   public String toString() {return name();}

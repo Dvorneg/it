@@ -1,13 +1,14 @@
-# Учет компьютеров в IT отделе (НЕ закончено) 
+# Computer accounting in the IT department (in developing) 
 
 ### Описание
 
-* [Ссылка на документацию](https://github.com/Dvorneg/it)
+* [Documentation link](https://github.com/Dvorneg/it)
 
-Для работы необходим postgresSQL с созданной базой equipment.
-Настройки подключения к БД в файле application.properties
+For work it is necessary postgresSQL with the created base equipment.
+Database connection settings in the application.properties file
 
-Сделать:
-- обработка ошибок
-- полный перевод (осталось перевести js)
-- Добавить вход по логину/паролю
+To do:
+- Error handling
+- full translation (js remaining)
+- Add login/password
+- test

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="webjars/datetimepicker/2.5.20-1/jquery.datetimepicker.css"> <%--календарь--%>
     <link rel="shortcut icon" href="resources/images/favicon.png">
 
-    <%--Только для таблиц--%>
+    <%--For tables only--%>
     <script src="webjars/popper.js/2.9.3/umd/popper.min.js" defer></script>
     <script src="webjars/jquery/3.6.1/jquery.min.js" defer></script>
     <script src="webjars/bootstrap/5.2.0/js/bootstrap.min.js" defer></script>

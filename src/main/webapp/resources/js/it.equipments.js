@@ -49,7 +49,7 @@ const datatableOpts = {
         ]
     ],
     "createdRow": function (row, data, dataIndex) {
-        /* Тут можно при создании применить стили, например расркасить красным, где data-user-excess css  color: red;
+        /* this make a stile, paint red example, data-user-excess css  color: red;
              $(row).attr("data-user-excess", data.excess);*/
     }
 
@@ -78,7 +78,7 @@ function getLocale() {
         url: "/locale",
         success: function (data) {
             locale = data;
-            //Получаем язык и только потом загружаем таблицу и календарь
+            //get language, after get table and calendar
             makeEditable(datatableOpts);
             $.datetimepicker.setLocale(locale);
 
@@ -137,14 +137,14 @@ function makeEditable(datatableOpts) {
 
 let failedNote;
 
-//После кнопки "добавить" (открытие модального окна)
+//after "add" button (open modal window)
 function add() {
     $("#modalTitle").html("Добавить оборудование");
     form.find(":input").val("");
     modal.show();
 }
 
-/*После кнопки "изменить" (открытие модального окна)*/
+/*after "edit" button (open modal window)*/
 function updateRow(id) {
 
     form.find(":input").val("");
@@ -153,13 +153,13 @@ function updateRow(id) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
-        /*Установка текущего значения в списке перечислений*/
+        /*Setting the current value in the list of enumerations*/
         $('#typeOfArray').val($('#typeOf').val());
         modal.show();
     });
 }
 
-/*После кнопки "удалить"*/
+/*after "delete" button*/
 function deleteRow(id) {
     if (confirm('Удалить запись?')) {
         $.ajax({
@@ -173,7 +173,7 @@ function deleteRow(id) {
 }
 
 
-//После кнопки "Сохранить" (модального окна)
+///*after "save " button*/ (modal window)
 function save() {
     $.ajax({
         type: "POST",
@@ -186,7 +186,7 @@ function save() {
     });
 }
 
-/*Всплывающие уведомления*/
+/*Pop-up notifications*/
 function closeNoty() {
     if (failedNote) {
         failedNote.close();
@@ -218,7 +218,7 @@ function failNoty(jqXHR) {
 }
 
 
-/*Кнопки, вывод значков*/
+/*button, icon output*/
 function renderEditBtn(data, type, row) {
     if (type === "display") {
         /* return "<a onclick='updateRow(" + row.id + ");'><span class='fa fa-pencil'></span></a>";*/

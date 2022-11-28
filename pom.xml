@@ -70,13 +70,13 @@
             <scope>test</scope>
         </dependency>-->
 
-        <!-- Для компиляции jsp-->
+        <!-- For compiling  jsp-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- JSTL для JSP-->
+        <!-- JSTL for JSP-->
        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
