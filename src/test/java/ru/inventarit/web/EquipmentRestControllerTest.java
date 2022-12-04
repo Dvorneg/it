@@ -6,8 +6,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static ru.inventarit.util.EquipmentsUtil.getTos;
 import static ru.inventarit.web.EquipmentRestController.REST_URL;
-import static ru.inventarit.web.EquipmentTestData.EQUIPMENT_MATCHER;
+import static ru.inventarit.web.EquipmentTestData.TO_MATCHER;
 import static ru.inventarit.web.EquipmentTestData.equipments;
 
 public class EquipmentRestControllerTest extends AbstractControllerTest{
@@ -26,7 +27,7 @@ public class EquipmentRestControllerTest extends AbstractControllerTest{
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(EQUIPMENT_MATCHER.contentJson (equipments));
+                .andExpect(TO_MATCHER.contentJson ( getTos(equipments )));
     }
 
     @Test
@@ -36,7 +37,6 @@ public class EquipmentRestControllerTest extends AbstractControllerTest{
         perform(MockMvcRequestBuilders.get(REST_URL))
                 .andExpect(jsonPath("$[1].company").value("LG"));
     }
-
 
 
 }

@@ -1,14 +1,11 @@
 package ru.inventarit.model;
 
-
 import org.springframework.context.i18n.LocaleContextHolder;
-
 import java.io.Serializable;
 import java.util.Map;
 
 public enum TypeOf  implements Serializable {
 
-    //BUILDINGS( new HashMap<String,String>("Здания","Buildings","1","1")   );
     BUILDINGS( Map.of("ru","Здания","en","Buildings") ),
     FACILITIES( Map.of("ru","Сооружения","en","Facilities") ),
     MACHINES_AND_EQUIPMENT(Map.of("ru","Машины и оборудование (кроме офисного)","en","Machines and equipment")),
@@ -34,17 +31,16 @@ public enum TypeOf  implements Serializable {
     OTHER("Другие","");*/
 
     private Map<String,String> lang;
-    //public String name;
 
     TypeOf(Map lang) {
         this.lang = lang;
     }
 
-  @Override
+  //@Override
   public String toString() {return name();}
 /*    public String toString() {
         return "TypeOf{" +
-                "title='" + title + '\'' +
+                "name='" + name() + '\'' +
                 '}';
     }*/
 
@@ -62,6 +58,5 @@ public enum TypeOf  implements Serializable {
         else
             return lang.get("en");
     }
-
 
 }

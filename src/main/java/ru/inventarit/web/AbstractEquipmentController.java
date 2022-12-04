@@ -3,6 +3,7 @@ package ru.inventarit.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.service.EquipmentService;
 import ru.inventarit.to.EquipmentTo;
@@ -30,7 +31,7 @@ public abstract class AbstractEquipmentController {
     public List<EquipmentTo> getAll() {
         //int userId = SecurityUtil.authUserId();
         log.info("getAll ");
-        return EquipmentsUtil.filterByPredicate(service.getAll());
+        return EquipmentsUtil.filterByPredicate(service.getAll(), LocaleContextHolder.getLocale().getLanguage());
     }
 
     public Equipment create(Equipment equipment) {

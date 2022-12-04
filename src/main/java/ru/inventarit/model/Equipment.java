@@ -3,10 +3,8 @@ package ru.inventarit.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -19,9 +17,12 @@ public class Equipment extends NamedEntity{
 
     @Column(name = "release_date", nullable = false )
     //if need time refactor, columnDefinition = "timestamp default now()")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yy-MM-dd")
-    @DateTimeFormat(pattern = "yy-MM-dd")
-    private LocalDate releaseDate= LocalDate.now();
+    @NonNull
+    @JsonFormat( pattern = "yy-MM-dd")
+    @DateTimeFormat(pattern = "yy-MM-dd", iso = DateTimeFormat.ISO.DATE)
+    //@JsonDeserialize(using = JsonUtil.class)
+    private LocalDate releaseDate ;
+    //private LocalDate releaseDate= LocalDate.now();
 
     //add location?
     @Column(name = "description", nullable = false)
@@ -45,8 +46,9 @@ public class Equipment extends NamedEntity{
     @Column(name = "inventory_number" )
     private String inventoryNumber;
 
-    public Equipment(Integer id, String name, String company, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
+    public Equipment(Integer id, String name, String inventoryNumber, String company, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
         super(id, name);
+        this.inventoryNumber = inventoryNumber;
         this.company = company;
         this.description = description;
         this.responsiblePerson = responsiblePerson;

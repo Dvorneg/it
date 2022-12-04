@@ -14,21 +14,27 @@ public class EquipmentsUtil {
         return TypeOf.values();
     }
 
-    public static List<EquipmentTo> getTos(List<Equipment> equipments) {
-        return filterByPredicate(equipments);
+
+    public static List<EquipmentTo> getTos(List<Equipment> equipments, String language) {
+        return filterByPredicate(equipments,language);
     }
 
-    public static List<EquipmentTo> filterByPredicate(List<Equipment> equipments) {
+    public static List<EquipmentTo> getTos(List<Equipment> equipments) {
+        String language="en";
+        return filterByPredicate(equipments, language);
+    }
+
+    public static List<EquipmentTo> filterByPredicate(List<Equipment> equipments,String language) {
 
         return equipments.stream()
                 //.filter(filter)
-                .map(EquipmentsUtil::createTo)
+                // .map(EquipmentsUtil::createTo)
+                .map(e->EquipmentsUtil.createTo(e,language))
                 .collect(Collectors.toList());
-
     }
 
-    public static EquipmentTo createTo(Equipment equipment) {
-        return new EquipmentTo(equipment.getId(), equipment.getName(),equipment.getCompany(), equipment.getDescription(), equipment.getResponsiblePerson(), equipment.getReleaseDate(),equipment.getTypeOf(),equipment.getInventoryNumber());
+    public static EquipmentTo createTo(Equipment equipment,String language) {
+        return new EquipmentTo(equipment.getId(), equipment.getName(),equipment.getCompany(), equipment.getDescription(), equipment.getResponsiblePerson(), equipment.getReleaseDate(),equipment.getTypeOf().getTitle(language),equipment.getInventoryNumber());
     }
 
 }
