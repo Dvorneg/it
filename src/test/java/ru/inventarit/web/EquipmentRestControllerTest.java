@@ -8,8 +8,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.inventarit.util.EquipmentsUtil.getTos;
 import static ru.inventarit.web.EquipmentRestController.REST_URL;
-import static ru.inventarit.web.EquipmentTestData.TO_MATCHER;
-import static ru.inventarit.web.EquipmentTestData.equipments;
+import static ru.inventarit.EquipmentTestData.TO_MATCHER;
+import static ru.inventarit.EquipmentTestData.equipments;
 
 public class EquipmentRestControllerTest extends AbstractControllerTest{
 

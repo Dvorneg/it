@@ -9,3 +9,7 @@
 INSERT INTO equipment (inventory_number,name,company, description, responsible_person, release_date,type_of)
 VALUES ('оф-1','принтер','Samsung', 'description1',  'responsible_person1','2021-01-03','OFFICE_EQUIPMENT'),
        ('оф-2','монитор', 'LG','description2',  'responsible_person2','2022-02-02','OTHER');
+
+
+INSERT INTO equipment (id, inventory_number,name,company, description, responsible_person, release_date,type_of)
+VALUES (9,'оф-3','принтер','LG', 'description3',  'responsible_person3','2022-02-03','BUILDINGS');
