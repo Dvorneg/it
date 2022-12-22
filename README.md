@@ -11,4 +11,3 @@ To do:
 - Error handling
 - full translation (js remaining)
 - Add login/password
-- test
