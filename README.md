@@ -10,4 +10,5 @@ Database connection settings in the application.properties file
 To do:
 - Error handling
 - full translation (js remaining)
-- Add login/password
+- Add login/password 
+- enter login/password 123|123

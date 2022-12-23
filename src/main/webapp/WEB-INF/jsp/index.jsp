@@ -18,8 +18,8 @@
 </div>
 <div class="container">
     <div class="starter-template">
-        <h1>Вода вода</h1>
-        <h2>вода вода</h2>
+        <h1>заголовок h1</h1>
+        <h2>заголовок h2</h2>
     </div>
 </div>
 <div class="container">
