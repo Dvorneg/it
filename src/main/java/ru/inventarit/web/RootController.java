@@ -24,4 +24,10 @@ public class RootController {
         return "equipments";
     }
 
+    @GetMapping("/login")
+    public String formLogin() {
+        log.info("Страница Логин");
+        return "login";
+    }
+
 }

@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%--<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>--%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
@@ -11,6 +11,32 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="equipments">Оборудование</a>
+        </li>
+        <li class="nav-item">
+            <sec:authorize access="isAuthenticated()">
+                <form:form class="form-inline my-2" action="logout" method="post">
+                    <%--                                    <a class="btn btn-info mr-1" href="profile">${userTo.name} <spring:message code="app.profile"/></a>--%>
+                <a class="btn btn-info mr-1" href="profile"><sec:authentication property="principal.userTo.name"/> <spring:message code="app.profile"/></a>
+                    <button class="btn btn-primary my-1" type="submit">
+                        <span class="fa fa-sign-out"></span>
+                    </button>
+                </form:form>
+            </sec:authorize>
+        </li>
+        <li class="nav-item">
+            <sec:authorize access="isAnonymous()">
+                <form:form class="login_form my-1 " id="login_form" action="spring_security_check" method="post">
+                <div class="col-auto">
+
+                    <input class="login_form mr-1" type="text" placeholder="Email" name="username">
+                    <input class="login_form mr-1" type="password" placeholder="Password" name="password">
+
+                    <button class="btn btn-success" type="submit">
+                        <span class="fa fa-sign-in"></span>
+                    </button>
+                </div>
+                </form:form>
+            </sec:authorize>
         </li>
 
         <li class="nav-item dropdown">

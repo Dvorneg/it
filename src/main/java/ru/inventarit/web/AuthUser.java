@@ -1,22 +1,37 @@
 package ru.inventarit.web;
 
 import lombok.Getter;
-import lombok.ToString;
-import org.springframework.lang.NonNull;
 import ru.inventarit.model.User;
+import ru.inventarit.to.UserTo;
+import ru.inventarit.util.UserUtil;
 
 @Getter
-@ToString(of = "user")
 public class AuthUser extends org.springframework.security.core.userdetails.User {
 
-    private final User user;
+   private UserTo userTo;
 
-    public AuthUser(@NonNull User user) {
-        super(user.getEmail(), user.getPassword(), user.getRoles());
-        this.user = user;
+    public AuthUser(User user) {
+        super(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, user.getRoles());
+        setTo(UserUtil.asTo(user));
     }
 
-    public int id() {
-        return user.id();
+    public int getId() {
+        return userTo.id();
     }
+
+    public void setTo(UserTo newTo) {
+        newTo.setPassword(null);
+        userTo = newTo;
+    }
+
+    public UserTo getUserTo() {
+        return userTo;
+    }
+
+    @Override
+    public String toString() {
+        return userTo.toString();
+    }
+
+
 }

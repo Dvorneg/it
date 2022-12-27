@@ -6,17 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.inventarit.model.Role;
 import ru.inventarit.model.User;
 import ru.inventarit.repository.UserRepository;
 import ru.inventarit.util.JsonUtil;
@@ -36,6 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     @Autowired
     private void setMapper(ObjectMapper objectMapper) {
         JsonUtil.setMapper(objectMapper);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
     }
 
     @Bean
@@ -75,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 // .antMatchers("/", "/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()
-                //.loginPage("/login")  .permitAll()
+                .loginPage("/login")  .permitAll()
                 .loginProcessingUrl("/spring_security_check")
                 .failureUrl("/login?error=true")//
                 .and().logout().permitAll()
