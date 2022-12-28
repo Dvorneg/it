@@ -1,8 +1,12 @@
 package ru.inventarit;
 
 import ru.inventarit.model.Equipment;
+import ru.inventarit.model.Role;
 import ru.inventarit.model.TypeOf;
+import ru.inventarit.model.User;
 import ru.inventarit.to.EquipmentTo;
+import ru.inventarit.to.UserTo;
+import ru.inventarit.util.UserUtil;
 import ru.inventarit.web.MatcherFactory;
 
 import static java.time.LocalDate.of;
@@ -27,6 +31,12 @@ public class EquipmentTestData {
     public static final Equipment equipment2 = new Equipment(2, "Принтер", "оф-2", "LG", "description2", "responsible_person2", of(2022, Month.FEBRUARY, 2), TypeOf.OTHER);
     public static final Equipment equipment3 = new Equipment(9, "Принтер", "оф-3", "LG", "description3", "responsible_person3", of(2022, Month.FEBRUARY, 3), TypeOf.BUILDINGS);
     public static final Equipment adminEquipment = new Equipment(ADMIN_EQUIPMENT_ID, "Принтер", "оф-2", "LG", "description2", "responsible_person2", of(2022, Month.FEBRUARY, 2), TypeOf.OTHER);
+
+    public static final String USER_MAIL = "123";
+    public static final String ADMIN_MAIL = "admin@gmail.com";
+
+    public static final User USER_TEST = new User(null,"Тест юзер", USER_MAIL, "123", Role.USER);
+    public static final UserTo USER_TEST_TO = UserUtil.asTo(USER_TEST);
 
     public static final List<Equipment> equipments = List.of(equipment1, equipment2,equipment3);
 

@@ -42,12 +42,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
         return encoder;
     }
 
-    @Bean
+/*    @Bean
     @Override
     // https://stackoverflow.com/a/70176629/548473
     public UserDetailsService userDetailsServiceBean() throws Exception {
         return super.userDetailsServiceBean();
-    }
+    }*/
 
     @Override
     protected UserDetailsService userDetailsService() {

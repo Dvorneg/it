@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping("/profile")
-public class ProfileUIController  {
+public class ProfileUIController {
 
 
     @Autowired
@@ -123,10 +123,10 @@ public class ProfileUIController  {
         return service.getWithMeals(id);
     }*/
 
-    public void enable(int id, boolean enabled) {
+/*    public void enable(int id, boolean enabled) {
         log.info(enabled ? "enable {}" : "disable {}", id);
         service.enable(id, enabled);
-    }
+    }*/
 
 
 }
