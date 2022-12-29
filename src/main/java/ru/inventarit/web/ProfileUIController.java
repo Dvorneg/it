@@ -47,7 +47,7 @@ public class ProfileUIController {
         update(userTo, authUser.getId());
         authUser.setTo(userTo);
         status.setComplete();
-        return "redirect:/meals";
+        return "redirect:/equipments";
     }
 
     @GetMapping("/register")

@@ -12,10 +12,8 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.LocaleResolver;
 
 @Configuration
-/*@ComponentScan(basePackages = "ru.inventarit.config")*/
 public class MvcConfig implements WebMvcConfigurer {
 
-    //Директория с файлами
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -27,9 +25,9 @@ public class MvcConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        //slr.setDefaultLocale(Locale.US);  по умолчанию
+        //slr.setDefaultLocale(Locale.US);  default
         //slr.setDefaultLocale(Locale.forLanguageTag("ru"));
-        //Если не назначать локаль по умолчанию, то локаль будет назначена согласно Accept-Language хэдера запроса
+        //if default=null , locale = Accept-Language, header request
         return slr;
     }
 

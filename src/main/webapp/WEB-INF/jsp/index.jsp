@@ -12,16 +12,16 @@
 
 <div class="container">
     <div class="starter-template">
-        <h1>Hello Spring Boot Web JSP</h1>
-        <h2>Сообщение h2</h2>
+        <h1><spring:message code="index.description"/></h1>
+        <h2><spring:message code="index.description2"/></h2>
     </div>
 </div>
-<div class="container">
+<%--<div class="container">
     <div class="starter-template">
         <h1>заголовок h1</h1>
         <h2>заголовок h2</h2>
     </div>
-</div>
+</div>--%>
 <div class="container">
     <spring:message code="welcome.text"/>
    <%-- "#{welcome.text}"--%>
