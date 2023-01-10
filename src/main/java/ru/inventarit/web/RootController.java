@@ -30,4 +30,10 @@ public class RootController {
         return "login";
     }
 
+    @GetMapping("/feedback")
+    public String formFeedback() {
+        log.info("Страница feedback");
+        return "feedback";
+    }
+
 }

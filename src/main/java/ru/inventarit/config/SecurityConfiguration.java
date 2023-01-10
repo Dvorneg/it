@@ -7,14 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import ru.inventarit.model.User;
 import ru.inventarit.repository.UserRepository;
 import ru.inventarit.util.JsonUtil;
@@ -26,7 +28,9 @@ import java.util.Optional;
 @EnableWebSecurity
 @Slf4j
 @AllArgsConstructor
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)//?
+//public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
+public class SecurityConfiguration {
 
     public static final PasswordEncoder PASSWORD_ENCODER = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     private final UserRepository userRepository;
@@ -49,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
         return super.userDetailsServiceBean();
     }*/
 
-    @Override
+    //@Override
     protected UserDetailsService userDetailsService() {
         return email -> {
             log.debug("Authenticating '{}'", email);
@@ -63,9 +67,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
                 .passwordEncoder(PASSWORD_ENCODER);
+
     }
 
-    @Override
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/resources/css/**").permitAll()
+                .antMatchers("/resources/images/**").permitAll()
+                //.antMatchers("/profile/**").anonymous()
+                .antMatchers("/login/**").anonymous()
+                .antMatchers("/profile/register","/webjars/**").permitAll()
+                .antMatchers("/about","/about").permitAll()
+                .antMatchers("/WEB-INF/lib/**").permitAll()
+                .antMatchers("/feedback/**").permitAll()
+                .antMatchers("/**").authenticated()
+                // .antMatchers("/", "/resources/**").permitAll()
+                .anyRequest().authenticated()
+                .and().formLogin()
+                .loginPage("/login")  .permitAll()
+                .loginProcessingUrl("/spring_security_check")
+                .failureUrl("/login?error=true")//
+                .and().logout().permitAll()
+                .and().csrf().disable() ;
+        return http.build();
+    }
+
+/*    @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
@@ -87,5 +117,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                 .and().logout().permitAll()
                 .and().csrf().disable() ;
 
-    }
+    }*/
 }

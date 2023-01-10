@@ -1,7 +1,7 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%--<%@ taglib prefix="topjava" tagdir="/WEB-INF/tags" %>--%>
+<%@ taglib prefix="inputF" tagdir="/WEB-INF/tags" %>
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
@@ -11,7 +11,7 @@
 
 <div class="jumbotron pt-4">
     <div class="container">
-        <%--@elvariable id="userTo" type="ru.javawebinar.topjava.to.UserTo"--%>
+        <%--@elvariable id="userTo" type="ru.inventarit.to.UserTo"--%>
         <div class="row">
             <div class="col-5 offset-3">
                 <h3>${userTo.name} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h3>
@@ -20,7 +20,9 @@
 
                     <input name="id" value="${userTo.id}" type="hidden">
 
-                    Profile info
+                    <inputF:inputField labelCode="Имя" name="name"/>
+                    <inputF:inputField labelCode="E-mail" name="email"/>
+                    <inputF:inputField labelCode="Пароль" name="password" inputType="password"/>
 
                     <div class="text-center">
                         <a class="btn btn-secondary" href="#" onclick="window.history.back()">
@@ -33,6 +35,13 @@
                         </button>
                     </div>
                 </form:form>
+
+                <sec:authorize access="hasRole('USER')">
+                    <div class="text-center">
+                        <button class="btn btn-info" onclick="window.location.href = '/feedback'">Написать в поддержку!</button>
+                    </div>
+                </sec:authorize>
+
             </div>
         </div>
     </div>
