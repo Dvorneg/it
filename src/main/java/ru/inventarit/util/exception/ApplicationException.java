@@ -1,7 +1,5 @@
 package ru.inventarit.util.exception;
 
-import javax.lang.model.type.ErrorType;
-
 public class ApplicationException extends RuntimeException {
 
     private final ErrorType type;

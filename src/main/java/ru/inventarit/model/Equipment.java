@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -45,6 +46,8 @@ public class Equipment extends NamedEntity{
     //Inv. No.
     @Column(name = "inventory_number" )
     private String inventoryNumber;
+
+
 
     public Equipment(Integer id, String name, String inventoryNumber, String company, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
         super(id, name);

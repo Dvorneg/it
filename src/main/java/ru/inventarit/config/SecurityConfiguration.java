@@ -29,7 +29,7 @@ import java.util.Optional;
 @Slf4j
 @AllArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)//?
-//public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
+//public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 public class SecurityConfiguration {
 
     public static final PasswordEncoder PASSWORD_ENCODER = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -82,6 +82,7 @@ public class SecurityConfiguration {
                 .antMatchers("/profile/register","/webjars/**").permitAll()
                 .antMatchers("/about","/about").permitAll()
                 .antMatchers("/WEB-INF/lib/**").permitAll()
+                .antMatchers("/profile/register").permitAll()
                 .antMatchers("/feedback/**").permitAll()
                 .antMatchers("/**").authenticated()
                 // .antMatchers("/", "/resources/**").permitAll()
