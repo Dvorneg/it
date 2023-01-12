@@ -8,8 +8,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
@@ -30,8 +32,8 @@ public class ProfileUIController {
     @Autowired
     private UserService service;
 
-/*    @Autowired
-    private UniqueMailValidator emailValidator;*/
+    @Autowired
+    private UniqueMailValidator emailValidator;
 
 
     @GetMapping
@@ -69,10 +71,10 @@ public class ProfileUIController {
         return "redirect:/login?message=app.registered&username=" + userTo.getEmail();
     }
 
-/*    @InitBinder
+    @InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.addValidators(emailValidator);
-    }*/
+    }
 
     public List<User> getAll() {
         log.info("getAll");

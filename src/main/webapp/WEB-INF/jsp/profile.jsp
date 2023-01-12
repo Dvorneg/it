@@ -20,9 +20,9 @@
 
                     <input name="id" value="${userTo.id}" type="hidden">
 
-                    <inputF:inputField labelCode="Имя" name="name"/>
-                    <inputF:inputField labelCode="E-mail" name="email"/>
-                    <inputF:inputField labelCode="Пароль" name="password" inputType="password"/>
+                    <inputF:inputField labelCode="user.name" name="name"/>
+                    <inputF:inputField labelCode="user.email" name="email"/>
+                    <inputF:inputField labelCode="user.password" name="password" inputType="password"/>
 
                     <div class="text-center">
                         <a class="btn btn-secondary" href="#" onclick="window.history.back()">
@@ -35,17 +35,19 @@
                         </button>
                     </div>
                 </form:form>
-
-                <sec:authorize access="hasRole('USER')">
+                <br/>
+            <%--    <sec:authorize access="hasRole('USER')">--%>
                     <div class="text-center">
-                        <button class="btn btn-info" onclick="window.location.href = '/feedback'">Написать в поддержку!</button>
+                        <button class="btn btn-info" onclick="window.location.href = '/feedback'"><spring:message code="profile.feedback"/></button>
                     </div>
-                </sec:authorize>
+            <%--    </sec:authorize>--%>
 
             </div>
         </div>
     </div>
 </div>
+<br/>
+
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
