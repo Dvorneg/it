@@ -3,10 +3,11 @@ package ru.inventarit.web;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ru.inventarit.View;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.to.EquipmentTo;
-
 
 import java.util.List;
 
@@ -26,7 +27,8 @@ public class EquipmentUIController extends AbstractEquipmentController{
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void createOrUpdate( Equipment equipment) {
+    public void createOrUpdate(@Validated(View.Web.class) Equipment equipment) {
+    //public void createOrUpdate(@Valid Equipment equipment, BindingResult bindingResult) {
         log.info("EquipmentUIController createOrUpdate");
         if (equipment.isNew()) {
             super.create(equipment);
@@ -38,6 +40,7 @@ public class EquipmentUIController extends AbstractEquipmentController{
     @Override
     @GetMapping("/{id}")
     public Equipment get(@PathVariable int id) {
+        log.info("EquipmentUIController get id");
         return super.get(id);
     }
 

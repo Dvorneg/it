@@ -48,5 +48,8 @@ public class GlobalExceptionHandler {
         mav.setStatus(errorType.getStatus());
         return mav;
     }
+
+
+
 }
 

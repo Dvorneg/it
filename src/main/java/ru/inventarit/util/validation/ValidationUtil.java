@@ -2,12 +2,15 @@ package ru.inventarit.util.validation;
 
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.lang.NonNull;
+import ru.inventarit.model.HasId;
 import ru.inventarit.util.exception.ErrorType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.*;
 import java.util.Set;
 import org.slf4j.Logger;
+import ru.inventarit.util.exception.IllegalRequestDataException;
+import ru.inventarit.util.exception.NotFoundException;
 
 public class ValidationUtil {
 
@@ -27,7 +30,6 @@ public class ValidationUtil {
         // https://alexkosarev.name/2018/07/30/bean-validation-api/
         Set<ConstraintViolation<T>> violations = validator.validate(bean);
         if (!violations.isEmpty()) {
-            System.out.println("ПЕРЕД ошибкой");
             throw new ConstraintViolationException(violations);
         }
     }
@@ -53,4 +55,44 @@ public class ValidationUtil {
     public static String getMessage(Throwable e) {
         return e.getLocalizedMessage() != null ? e.getLocalizedMessage() : e.getClass().getName();
     }
+
+
+
+
+
+    public static <T> T checkNotFoundWithId(T object, int id) {
+        checkNotFoundWithId(object != null, id);
+        return object;
+    }
+
+    public static void checkNotFoundWithId(boolean found, int id) {
+        checkNotFound(found, "id=" + id);
+    }
+
+    public static <T> T checkNotFound(T object, String msg) {
+        checkNotFound(object != null, msg);
+        return object;
+    }
+
+    public static void checkNotFound(boolean found, String msg) {
+        if (!found) {
+            throw new NotFoundException("Not found entity with " + msg);
+        }
+    }
+
+    public static void checkNew(HasId bean) {
+        if (!bean.isNew()) {
+            throw new IllegalRequestDataException(bean + " must be new (id=null)");
+        }
+    }
+
+    public static void assureIdConsistent(HasId bean, int id) {
+//      conservative when you reply, but accept liberally (http://stackoverflow.com/a/32728226/548473)
+        if (bean.isNew()) {
+            bean.setId(id);
+        } else if (bean.id() != id) {
+            throw new IllegalRequestDataException(bean + " must be with id=" + id);
+        }
+    }
+
 }

@@ -36,4 +36,10 @@ public class RootController {
         return "feedback";
     }
 
+    @GetMapping("/error")
+    public String formError() {
+        log.info("Страница error");
+        return "exception";
+    }
+
 }

@@ -6,24 +6,26 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @Setter
 @Getter
 @Entity
+@Valid
 @Table(name = "equipment")
 public class Equipment extends NamedEntity{
 
     @Column(name = "release_date", nullable = false )
     //if need time refactor, columnDefinition = "timestamp default now()")
-    @NonNull
+    @NotNull
     @JsonFormat( pattern = "yy-MM-dd")
     @DateTimeFormat(pattern = "yy-MM-dd", iso = DateTimeFormat.ISO.DATE)
     //@JsonDeserialize(using = JsonUtil.class)
-    private LocalDate releaseDate ;
-    //private LocalDate releaseDate= LocalDate.now();
+    private LocalDate releaseDate = LocalDate.now();
 
     //add location?
     @Column(name = "description", nullable = false)

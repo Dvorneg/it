@@ -14,11 +14,11 @@ public class ErrorInfo {
         this.details = details;
     }
 
-    public ErrorInfo(StringBuffer requestURL, ru.inventarit.util.exception.ErrorType errorType, String typeMessage, String[] strings) {
+/*    public ErrorInfo(StringBuffer requestURL, ru.inventarit.util.exception.ErrorType errorType, String typeMessage, String[] strings) {
         this.url = requestURL.toString();
         this.type = errorType;
         this.typeMessage = typeMessage;
         this.details = strings;
-    }
+    }*/
 
 }

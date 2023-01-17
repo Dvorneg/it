@@ -15,6 +15,7 @@ import ru.inventarit.model.User;
 import ru.inventarit.repository.UserRepository;
 import ru.inventarit.to.UserTo;
 import ru.inventarit.util.UserUtil;
+import ru.inventarit.util.exception.UpdateRestrictionException;
 import ru.inventarit.web.AuthUser;
 
 import javax.transaction.Transactional;
@@ -110,6 +111,11 @@ public class UserService implements UserDetailsService {
             prepareAndSave(UserUtil.updateFromTo(user, userTo));
         }
 
+/*    protected void checkModificationAllowed(int id) {
+        if (modificationRestriction && id < AbstractBaseEntity.START_SEQ + 2) {
+            throw new UpdateRestrictionException();
+        }
+    }*/
 
 /*
     @CacheEvict(value = "users", allEntries = true)

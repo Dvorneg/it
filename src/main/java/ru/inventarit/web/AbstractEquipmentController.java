@@ -10,6 +10,8 @@ import ru.inventarit.to.EquipmentTo;
 import ru.inventarit.util.EquipmentsUtil;
 import java.util.List;
 
+import static ru.inventarit.util.validation.ValidationUtil.checkNew;
+
 @Slf4j
 public abstract class AbstractEquipmentController {
     @Autowired
@@ -36,8 +38,8 @@ public abstract class AbstractEquipmentController {
 
     public Equipment create(Equipment equipment) {
         //int userId = SecurityUtil.authUserId();
-        log.info("create ", equipment);
-        //checkNew(equipment);
+        log.info("create {}", equipment);
+        checkNew(equipment);
         return service.create(equipment);
     }
 

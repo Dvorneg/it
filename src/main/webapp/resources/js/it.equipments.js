@@ -121,18 +121,18 @@ function makeEditable(datatableOpts) {
     //alert ( ${pageContext.response.locale} );
     form = $('#detailsForm');
 
-    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+    $(document).ajaxError(function (event, jqXHR, options) {
         failNoty(jqXHR);
     });
     //alert("Шаг 1, ок!");
     $.ajaxSetup({cache: false});
 
-    /* csrf off
-       var token = $("meta[name='_csrf']").attr("content");
-        var header = $("meta[name='_csrf_header']").attr("content");
-        $(document).ajaxSend(function (e, xhr, options) {
-            xhr.setRequestHeader(header, token);
-        });*/
+/*    // csrf off
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function (e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });*/
 }
 
 let failedNote;
@@ -205,21 +205,14 @@ function successNoty(key) {
 }
 
 function failNoty(jqXHR) {
-    closeNoty();
-    var errorInfo = jqXHR.responseJSON;
-    failedNote = new Noty({
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
-        type: "error",
-        layout: "bottomRight"
-    });
-/*    failedNote = new Noty({
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.error+("<br>"),
-        //text: "<span class='fa fa-lg fa-exclamation-circle'></span> " + jqXHR.text + "<br>" + ("<br>"),
-        type: "error",
-        layout: "bottomRight"
-    });*/
-    failedNote.show()
+        closeNoty();
+        var errorInfo = jqXHR.responseJSON;
+        failedNote = new Noty({
+            text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
+            type: "error",
+            layout: "bottomRight"
+        });
+        failedNote.show()
 }
 
 
