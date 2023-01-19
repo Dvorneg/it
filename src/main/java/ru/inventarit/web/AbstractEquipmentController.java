@@ -20,8 +20,8 @@ public abstract class AbstractEquipmentController {
     public Equipment get(int id) {
         //int userId = SecurityUtil.authUserId();
         log.info("get equipment {} ", id);
-        return service.getById(id);
-    };
+        return service.getById(id) ;
+    }
 
     public void delete(int id) {
         //int userId = SecurityUtil.authUserId();

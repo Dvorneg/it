@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.repository.EquipmentRepository;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class EquipmentService {
     public Equipment getById(int id)
     {
         //optional return ResponseEntity.of(repository.getReferenceById(id));
-        return repository.getReferenceById(id);
+        return repository.findById(id).get();
     }
 
 /*    @Transactional

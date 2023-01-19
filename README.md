@@ -11,7 +11,6 @@ Enter login/password 123|123.
 To do:
 - Error handling
 - full translation (js remaining)
-- enter login/password 123|123
 - Divide equipment by organization
 - Error: Invalid username or password on English 
 - add user service, refactor user repository

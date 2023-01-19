@@ -42,6 +42,7 @@ public class Equipment extends NamedEntity{
     private String responsiblePerson;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     @Column(name = "type_of" )
     private TypeOf typeOf;
 

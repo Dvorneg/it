@@ -15,7 +15,6 @@ public class RootController {
         return "index";
     }
 
-
     //https://stackoverflow.com/questions/15073830/spring-formoptions-tag-with-enum
     @GetMapping(   "/equipments")
     public String getEquipments(ModelMap model) {
@@ -34,12 +33,6 @@ public class RootController {
     public String formFeedback() {
         log.info("Страница feedback");
         return "feedback";
-    }
-
-    @GetMapping("/error")
-    public String formError() {
-        log.info("Страница error");
-        return "exception";
     }
 
 }

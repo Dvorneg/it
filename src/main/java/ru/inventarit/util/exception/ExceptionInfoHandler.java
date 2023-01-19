@@ -1,7 +1,6 @@
 package ru.inventarit.util.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -15,29 +14,32 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import ru.inventarit.util.validation.ValidationUtil;
 
-import static  ru.inventarit.util.exception.ErrorType.*;
-
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.Map;
+
+import static  ru.inventarit.util.exception.ErrorType.*;
 
 
 @RestControllerAdvice(annotations = RestController.class)
+//@RestControllerAdvice
+@Slf4j
 @Order(Ordered.HIGHEST_PRECEDENCE + 5)
 public class ExceptionInfoHandler {
-    private static final Logger log = LoggerFactory.getLogger(ExceptionInfoHandler.class);
+    //  private static final Logger log = LoggerFactory.getLogger(ExceptionInfoHandler.class);
 
     public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
     //public static final String EXCEPTION_DUPLICATE_DATETIME = "exception.meal.duplicateDateTime";
 
     private static final Map<String, String> CONSTRAINS_I18N_MAP = Map.of(
             "users_unique_email_idx", EXCEPTION_DUPLICATE_EMAIL);
-            //"meals_unique_user_datetime_idx", EXCEPTION_DUPLICATE_DATETIME);
 
-    private final MessageSourceAccessor messageSourceAccessor;
+    private MessageSourceAccessor messageSourceAccessor;
 
     public ExceptionInfoHandler(MessageSourceAccessor messageSourceAccessor) {
         this.messageSourceAccessor = messageSourceAccessor;
     }
+    //"meals_unique_user_datetime_idx", EXCEPTION_DUPLICATE_DATETIME);
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorInfo> handleError(HttpServletRequest req, NotFoundException e) {
@@ -92,6 +94,7 @@ public class ExceptionInfoHandler {
                         details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)})
                 );
     }
+
 
 
 }
