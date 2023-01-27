@@ -5,25 +5,19 @@
 <html>
 
 <head>
-<jsp:include page="fragments/headTag.jsp"/>
+    <jsp:include page="fragments/headTag.jsp"/>
 </head>
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
     <div class="starter-template">
-        <h1><spring:message code="index.description"/></h1>
-        <h2><spring:message code="index.description2"/></h2>
+        <h1><spring:message code="company.description"/></h1>
     </div>
 </div>
 
 <div class="container">
-    <spring:message code="welcome.text"/>
-   <%-- "#{welcome.text}"--%>
-</div>
-
-<div class="container">
-    <a class="btn btn-primary btn-info" href="/company" role="button">Выбрать фирму > </a>
+    <a class="btn btn-primary btn-info" href="/equipments" role="button">Перейти к оборудованию > </a>
 </div>
 
 <%--<% out.println("<script> alert ('Зарегистрировано успешно'); window.location.href ('index.jsp'); </script>"); %>--%>

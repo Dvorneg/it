@@ -10,6 +10,9 @@
             <a class="nav-link" href="#">  <spring:message code="bodyHeader.main"/> <span class="sr-only">()</span></a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="company"> <spring:message code="bodyHeader.company"/> </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="equipments"> <spring:message code="bodyHeader.equipments"/> </a>
         </li>
         <li class="nav-item">

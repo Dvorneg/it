@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @Entity
-@Valid
+//@Valid
 @Table(name = "equipment")
 public class Equipment extends NamedEntity{
 

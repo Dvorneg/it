@@ -14,3 +14,5 @@ To do:
 - Divide equipment by organization
 - Error: Invalid username or password on English 
 - add user service, refactor user repository
+- add guide company
+- link the user and the organization
