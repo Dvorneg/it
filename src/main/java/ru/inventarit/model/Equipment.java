@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @Entity
+@EqualsAndHashCode(callSuper = true)
 //@Valid
 @Table(name = "equipment")
 public class Equipment extends NamedEntity{

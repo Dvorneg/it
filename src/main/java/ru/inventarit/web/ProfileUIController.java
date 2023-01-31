@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import ru.inventarit.View;
+import ru.inventarit.model.Company;
 import ru.inventarit.model.User;
 import ru.inventarit.service.UserService;
 import ru.inventarit.to.UserTo;
@@ -28,13 +29,20 @@ import java.util.List;
 @RequestMapping("/profile")
 public class ProfileUIController {
 
-
-    @Autowired
     private UserService service;
 
-    @Autowired
     private UniqueMailValidator emailValidator;
 
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.addValidators(emailValidator);
+    }
+
+    @Autowired
+    public ProfileUIController(UserService service, UniqueMailValidator emailValidator) {
+        this.service = service;
+        this.emailValidator = emailValidator;
+    }
 
     @GetMapping
     public String profile(ModelMap model, @AuthenticationPrincipal AuthUser authUser) {
@@ -71,10 +79,9 @@ public class ProfileUIController {
         return "redirect:/login?message=app.registered&username=" + userTo.getEmail();
     }
 
-    @InitBinder
-    protected void initBinder(WebDataBinder binder) {
-        binder.addValidators(emailValidator);
-    }
+
+
+
 
     public List<User> getAll() {
         log.info("getAll");
@@ -119,6 +126,7 @@ public class ProfileUIController {
         log.info("getByEmail {}", email);
         return service.getByEmail(email);
     }
+
 
 /*    public User getWithMeals(int id) {
         log.info("getWithMeals {}", id);

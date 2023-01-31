@@ -1,10 +1,9 @@
 package ru.inventarit.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.util.CollectionUtils;
@@ -13,7 +12,6 @@ import ru.inventarit.HasIdAndEmail;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 
@@ -21,11 +19,12 @@ import java.util.*;
 @Table(name = "users")
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends NamedEntity implements HasIdAndEmail, Serializable {
-//public class User extends NamedEntity implements  Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+public class User extends NamedEntity implements HasIdAndEmail, Serializable{
+// Serializable!
+/*    @Serial
+    private static final long serialVersionUID = 1L;*/
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -55,6 +54,20 @@ public class User extends NamedEntity implements HasIdAndEmail, Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Role> roles;
 
+    @ManyToMany  //(fetch = FetchType.EAGER)
+    @JsonBackReference //else cycle!
+    @JoinTable(name = "User_Company", joinColumns = @JoinColumn(name = "user_id"),
+            //uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "company_id"}),
+            inverseJoinColumns = @JoinColumn(name = "company_id") )
+    private List<Company> companies;
+
+    public List<Company> getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(List<Company> companies) {
+        this.companies = companies;
+    }
 /*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
     //@OrderBy("dateTime DESC")
     @JsonManagedReference

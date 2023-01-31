@@ -29,3 +29,12 @@ VALUES ('USER', 1),
        ('USER', 3),
        ('USER', 4),
        ('ADMIN', 4);
+
+INSERT INTO COMPANY (name, description)
+VALUES ('USER Фирма', 1),
+    ('ООО ЖКХ', 1);
+
+INSERT INTO USER_COMPANY (user_id, company_id)
+VALUES (4, 1);
+
+

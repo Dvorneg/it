@@ -8,6 +8,7 @@
     <jsp:include page="fragments/headTag.jsp"/>
 </head>
 <body>
+<script src="resources/js/it.company.js" defer></script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="container">
@@ -16,13 +17,27 @@
     </div>
 </div>
 
-<div class="container">
-    <a class="btn btn-primary btn-info" href="/equipments" role="button">Перейти к оборудованию > </a>
-</div>
 
-<%--<% out.println("<script> alert ('Зарегистрировано успешно'); window.location.href ('index.jsp'); </script>"); %>--%>
-<%--<script>alert("ru")</script>--%>
-<%--<script>alert('${pageContext.response.locale.toString()}')</script>--%>
+<div class="container">
+<form name="formCompany" id="formCompany"></form>
+<div class="parent">
+    <div class="child">
+        <label class="btn btn-default"  for="selectCompany" > <spring:message code="company.label"/> :</label>
+        <select id="selectCompany" name="hero" >
+            <%--<option value="comapany 1">Strong company</option>--%>
+        </select>
+        <button type="button" onclick="selectCompany()" id="btn_select_hero"> <spring:message code="common.select"/></button>
+    </div>
+
+    <div class="child">
+
+    </div>
+</div>
+</form>
+</div>
+<%--<div class="container">
+    <a class="btn btn-primary btn-info" href="/equipments" role="button">Перейти к оборудованию > </a>
+</div>--%>
 
 <jsp:include page="fragments/footer.jsp"/>
 </body>

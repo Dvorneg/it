@@ -235,6 +235,7 @@ function onChangeTypeOfArray(text) {
     $('#typeOf').val(text);
 }
 
+
 $(document).ready(function () {
     getLocale();
 

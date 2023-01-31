@@ -11,16 +11,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import ru.inventarit.model.Company;
 import ru.inventarit.model.User;
 import ru.inventarit.repository.UserRepository;
 import ru.inventarit.to.UserTo;
 import ru.inventarit.util.UserUtil;
-import ru.inventarit.util.exception.UpdateRestrictionException;
 import ru.inventarit.web.AuthUser;
-
-import javax.transaction.Transactional;
-import java.util.List;
-
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -59,6 +55,12 @@ public class UserService implements UserDetailsService {
         //checkModificationAllowed(id);
         //checkNotFoundWithId(repository.delete(id), id);
         repository.delete(id);
+    }
+
+    public List<Company> getUserCompany(int userId){
+        //check?
+        User user = repository.getReferenceById(userId);
+        return user.getCompanies();
     }
 
     public User get(int id) {
