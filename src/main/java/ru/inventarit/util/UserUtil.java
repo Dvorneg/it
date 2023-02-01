@@ -8,7 +8,7 @@ import ru.inventarit.to.UserTo;
 public class UserUtil {
 
     public static UserTo asTo(User user) {
-        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());
+        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword(),user.getDefaultCompanyId());
     }
 
     public static User createNewFromTo(UserTo userTo) {

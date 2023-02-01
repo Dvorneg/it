@@ -1,7 +1,6 @@
 package ru.inventarit.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -40,6 +39,9 @@ public class User extends NamedEntity implements HasIdAndEmail, Serializable{
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
     private boolean enabled = true;
 
+    @Column(name = "default_company_id")
+    private Integer defaultCompanyId;
+
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date registered = new Date();
@@ -68,6 +70,7 @@ public class User extends NamedEntity implements HasIdAndEmail, Serializable{
     public void setCompanies(List<Company> companies) {
         this.companies = companies;
     }
+
 /*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
     //@OrderBy("dateTime DESC")
     @JsonManagedReference
@@ -99,6 +102,7 @@ public class User extends NamedEntity implements HasIdAndEmail, Serializable{
         this.registered =  new Date();
         setRoles(roles);
     }
+
 
     public void setRoles(Collection<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);

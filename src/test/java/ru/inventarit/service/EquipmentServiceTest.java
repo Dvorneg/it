@@ -31,7 +31,7 @@ public class EquipmentServiceTest {
     }
 
     @Test
-    void getById() {
+    void getByAdminId() {
         Equipment actual = service.getById(ADMIN_EQUIPMENT_ID);
         EQUIPMENT_MATCHER.assertMatch(actual,adminEquipment);
     }

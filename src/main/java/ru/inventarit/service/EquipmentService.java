@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.repository.EquipmentRepository;
+import ru.inventarit.to.UserTo;
+import ru.inventarit.util.SecurityUtil;
+import ru.inventarit.util.UserUtil;
+import ru.inventarit.web.AuthUser;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +18,8 @@ public class EquipmentService {
     private final EquipmentRepository repository;
 
     public List<Equipment> getAll() {
-        return repository.findAll();
+        //UserTo userTo = SecurityUtil.get();
+        return repository.getAllByCompanyId(SecurityUtil.authUserDefaultCompanyId());
     }
 
     public Equipment getById(int id)

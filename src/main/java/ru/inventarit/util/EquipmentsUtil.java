@@ -34,7 +34,7 @@ public class EquipmentsUtil {
     }
 
     public static EquipmentTo createTo(Equipment equipment,String language) {
-        return new EquipmentTo(equipment.getId(), equipment.getName(),equipment.getCompany(), equipment.getDescription(), equipment.getResponsiblePerson(), equipment.getReleaseDate(),equipment.getTypeOf().getTitle(language),equipment.getInventoryNumber());
+        return new EquipmentTo(equipment.getId(), equipment.getName(), equipment.getManufacturer(), equipment.getDescription(), equipment.getResponsiblePerson(), equipment.getReleaseDate(),equipment.getTypeOf().getTitle(language),equipment.getInventoryNumber());
     }
 
 }

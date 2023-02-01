@@ -11,7 +11,7 @@ import ru.inventarit.to.EquipmentTo;
 
 import java.util.List;
 
-@RestController
+@RestController //! Controller -
 @Slf4j
 @RequestMapping(value = EquipmentUIController.URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class EquipmentUIController extends AbstractEquipmentController{
@@ -20,9 +20,7 @@ public class EquipmentUIController extends AbstractEquipmentController{
     @GetMapping("")
     public List<EquipmentTo> getAll() {
         log.info("EquipmentUIController getAll");
-        //return super.getAll();
-        //return EquipmentsUtil.filterByPredicate( super.getAll() );
-        return  super.getAll() ;
+        return super.getAll();
     }
 
     @PostMapping

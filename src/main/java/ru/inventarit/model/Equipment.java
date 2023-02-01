@@ -1,12 +1,15 @@
 package ru.inventarit.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,7 +18,7 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @Entity
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 //@Valid
 @Table(name = "equipment")
 public class Equipment extends NamedEntity{
@@ -35,9 +38,9 @@ public class Equipment extends NamedEntity{
     private String description;
 
     //(manufacturer company?)
-    @Column(name = "company", nullable = false)
+    @Column(name = "manufacturer", nullable = false)
     @Size(min = 2, max = 70)
-    private String company;
+    private String manufacturer;
 
     @Column(name = "responsible_person" )
     private String responsiblePerson;
@@ -51,16 +54,40 @@ public class Equipment extends NamedEntity{
     @Column(name = "inventory_number" )
     private String inventoryNumber;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id",referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference
+    private Company company;
 
 
-    public Equipment(Integer id, String name, String inventoryNumber, String company, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
+/*    public Equipment(Integer id, String name, String inventoryNumber, String manufacturer, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
         super(id, name);
         this.inventoryNumber = inventoryNumber;
-        this.company = company;
+        this.manufacturer = manufacturer;
         this.description = description;
         this.responsiblePerson = responsiblePerson;
         this.releaseDate = releaseDate;
         this.typeOf = typeOf;
+    }*/
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Equipment(Integer id, String name, String inventoryNumber, String manufacturer, String description,String responsiblePerson,LocalDate releaseDate,TypeOf type,Company company) {
+        super(id, name);
+        this.inventoryNumber = inventoryNumber;
+        this.manufacturer = manufacturer;
+        this.description = description;
+        this.responsiblePerson = responsiblePerson;
+        this.releaseDate = releaseDate;
+        this.typeOf = typeOf;
+        this.company = company;
     }
 
     @Override
@@ -70,5 +97,19 @@ public class Equipment extends NamedEntity{
                 "Inv. No=" + inventoryNumber +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Equipment equipment = (Equipment) o;
+        return Objects.equals(releaseDate, equipment.releaseDate) && Objects.equals(description, equipment.description) && Objects.equals(manufacturer, equipment.manufacturer) && Objects.equals(responsiblePerson, equipment.responsiblePerson) && typeOf == equipment.typeOf && Objects.equals(inventoryNumber, equipment.inventoryNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), releaseDate, description, manufacturer, responsiblePerson, typeOf, inventoryNumber);
     }
 }

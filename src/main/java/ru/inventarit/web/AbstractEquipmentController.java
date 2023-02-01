@@ -8,6 +8,8 @@ import ru.inventarit.model.Equipment;
 import ru.inventarit.service.EquipmentService;
 import ru.inventarit.to.EquipmentTo;
 import ru.inventarit.util.EquipmentsUtil;
+import ru.inventarit.util.SecurityUtil;
+
 import java.util.List;
 
 import static ru.inventarit.util.validation.ValidationUtil.checkNew;
@@ -31,9 +33,10 @@ public abstract class AbstractEquipmentController {
 
     //Collection-> list
     public List<EquipmentTo> getAll() {
-        //int userId = SecurityUtil.authUserId();
+        int userId = SecurityUtil.authUserId();
         log.info("getAll ");
         return EquipmentsUtil.filterByPredicate(service.getAll(), LocaleContextHolder.getLocale().getLanguage());
+        //return EquipmentsUtil.filterByPredicate(service.getAll(), LocaleContextHolder.getLocale().getLanguage());
     }
 
     public Equipment create(Equipment equipment) {
