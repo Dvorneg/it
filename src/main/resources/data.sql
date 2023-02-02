@@ -6,9 +6,11 @@
    "responsible_person" varchar(255),
     "type_of" varchar(255),
     primary key ("id"));*/
-INSERT INTO COMPANY (id, name, description)
-VALUES (1,'USER Фирма', ''),
-       (2,'ООО ЖКХ', '');
+
+/*no added id!*/
+INSERT INTO COMPANY (name, description)
+VALUES ('USER Фирма', ''),
+       ('ООО ЖКХ', '');
 
 INSERT INTO equipment (inventory_number,name,manufacturer, description, responsible_person, release_date,type_of,company_id)
 VALUES ('оф-1','принтер','Samsung', 'description1',  'responsible_person1','2021-01-03','OFFICE_EQUIPMENT',1),
@@ -22,8 +24,10 @@ VALUES (9,'оф-3','принтер','LG', 'description3',  'responsible_person3'
 INSERT INTO USERS (name, email, password, default_company_id)
 VALUES ('User', 'test', '{noop}test', 1),
        ('Admin', 'admin@gmail.com', '{noop}admin', 2),
-       ('test1@mail.ru', 'test1@mail.ru', '{noop}test1@mail.ru', 1),
-       ('123', '123', '{noop}123', 1);
+       ('test1@mail.ru', 'test1@mail.ru', '{noop}test1@mail.ru', 1);
+
+INSERT INTO USERS (name, email, password)
+VALUES      ('test', '123@mail.ru', '{noop}123');
 
 INSERT INTO USER_ROLE (role, user_id)
 VALUES ('USER', 1),
@@ -35,6 +39,6 @@ VALUES ('USER', 1),
 
 
 INSERT INTO USER_COMPANY (user_id, company_id)
-VALUES (4, 1);
+VALUES (1, 1);
 
 

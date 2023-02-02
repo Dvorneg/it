@@ -26,7 +26,11 @@
         <select id="selectCompany" name="hero" >
             <%--<option value="comapany 1">Strong company</option>--%>
         </select>
-        <button type="button" onclick="selectCompany()" id="btn_select_hero"> <spring:message code="common.select"/></button>
+        <button type="button" onclick="selectCompany()" id="btn_select_company"> <spring:message code="common.select"/></button>
+
+        <input id="name_company" maxlength="128" size="30"  >
+        <button type="button" onclick="addCompany()" id="btn_add_company"> <spring:message code="common.add"/></button>
+
     </div>
 
     <div class="child">

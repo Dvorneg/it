@@ -6,8 +6,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 
 @NoArgsConstructor
@@ -15,11 +15,11 @@ import java.util.List;
 @Getter
 @Entity
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Company extends NamedEntity{
+//@EqualsAndHashCode(callSuper = true)
+public class Company extends NamedEntity implements Serializable {
 
-    @Column(name = "description", nullable = false)
-    @NotBlank
+    @Column(name = "description")
+    //@NotBlank
     @Size(min = 2, max = 120)
     private String description;
 
@@ -34,7 +34,8 @@ public class Company extends NamedEntity{
     //@OneToMany(mappedBy = "company")
     private List<Equipment> equipments;
 
-    public Company(String user_фирма) {
+    public Company(String name) {
+        this.name=name;
     }
 
     @Override

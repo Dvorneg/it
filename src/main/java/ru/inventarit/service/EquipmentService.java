@@ -2,17 +2,16 @@ package ru.inventarit.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.inventarit.model.Equipment;
 import ru.inventarit.repository.EquipmentRepository;
-import ru.inventarit.to.UserTo;
 import ru.inventarit.util.SecurityUtil;
-import ru.inventarit.util.UserUtil;
-import ru.inventarit.web.AuthUser;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class EquipmentService {
     private final EquipmentRepository repository;

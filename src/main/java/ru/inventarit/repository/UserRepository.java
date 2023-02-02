@@ -2,13 +2,12 @@ package ru.inventarit.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
-import org.springframework.transaction.annotation.Transactional;
 import ru.inventarit.model.User;
 
 import javax.persistence.QueryHint;
 import java.util.Optional;
 
-@Transactional(readOnly = true)
+
 public interface UserRepository extends BaseRepository<User> {
 
     @Query("SELECT u FROM User u WHERE u.email = LOWER(:email)")

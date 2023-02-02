@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.inventarit.model.Company;
 import ru.inventarit.model.User;
@@ -18,13 +19,14 @@ import ru.inventarit.to.UserTo;
 import ru.inventarit.util.UserUtil;
 import ru.inventarit.web.AuthUser;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
 
 @Service("userService")
 @Slf4j
+@Transactional
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {
 
