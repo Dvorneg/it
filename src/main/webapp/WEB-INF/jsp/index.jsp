@@ -23,7 +23,7 @@
 </div>
 
 <div class="container">
-    <a class="btn btn-primary btn-info" href="/company" role="button"> <spring:message code="index.start"/>  </a>
+    <a class="btn btn-primary btn-info" href="company/" role="button"> <spring:message code="index.start"/>  </a>
 </div>
 
 <%--<% out.println("<script> alert ('Зарегистрировано успешно'); window.location.href ('index.jsp'); </script>"); %>--%>

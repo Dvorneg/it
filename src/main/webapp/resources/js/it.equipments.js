@@ -1,4 +1,5 @@
-const equipmentAjaxUrl = "/profile/equipments/";
+const equipmentAjaxUrl = "profile/equipments/";
+
 let form;
 const modal = new bootstrap.Modal(document.querySelector('#editRow'));
 let locale;
@@ -75,7 +76,7 @@ function getLocale() {
 
     $.ajax({
         type: "GET",
-        url: "/locale",
+        url: "locale/",
         success: function (data) {
             locale = data;
             //get language, after get table and calendar

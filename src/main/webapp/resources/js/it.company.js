@@ -1,10 +1,11 @@
+const ajaxUrl = "profile/company/";
 //const companySelect = formCompany.selectCompany;
 const name_company = document.querySelector("[id='name_company']");
 
 function beforeSelectCompany() {
 
     $.ajax({
-        url: '/profile/company',
+        url: ajaxUrl,
         dataType: "json",
         //success: function (data, textStatus) {
         success: function (data ) {
@@ -23,13 +24,13 @@ function beforeSelectCompany() {
 
 
 function selectCompany() {
-    document.location.href = "/equipments";
+    document.location.href = "equipments/";
 }
 
 function addCompany() {
 
     $.ajax({
-        url: '/profile/company/'+name_company.value,
+        url: ajaxUrl +name_company.value,
         method: 'post',
         /* dataType: 'json',
         data: $(this).serialize(),*/
