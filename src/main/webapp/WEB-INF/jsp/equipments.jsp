@@ -28,7 +28,7 @@
                 <th><spring:message code="equipments.model"/></th>
                 <%--name--%>
                 <th><spring:message code="equipments.description"/></th>
-                <th><spring:message code="equipments.company"/> </th> <%--Фирма-производитель--%>
+                <th><spring:message code="equipments.manufacturer"/> </th> <%--Фирма-производитель--%>
                 <th><spring:message code="equipments.type"/> </th>
                 <th><spring:message code="equipments.releaseDate"/></th>
                 <th><spring:message code="common.change"/> </th>
@@ -80,9 +80,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="company" class="col-form-label"> <spring:message code="equipments.company"/> </label>
-                        <input type="text" class="form-control" id="company" name="company"
-                               placeholder="<spring:message code="equipments.company"/>">
+                        <label for="manufacturer" class="col-form-label"> <spring:message code="equipments.manufacturer"/> </label>
+                        <input type="text" class="form-control" id="manufacturer" name="manufacturer"
+                               placeholder="<spring:message code="equipments.manufacturer"/>">
                     </div>
 
                     <div class="form-group">
