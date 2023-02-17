@@ -3,7 +3,9 @@ package ru.inventarit.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.inventarit.model.Company;
 import ru.inventarit.model.Equipment;
+import ru.inventarit.repository.CompanyRepository;
 import ru.inventarit.repository.EquipmentRepository;
 import ru.inventarit.util.SecurityUtil;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EquipmentService {
     private final EquipmentRepository repository;
+    private final CompanyRepository companyRepository;
 
     public List<Equipment> getAll() {
         //UserTo userTo = SecurityUtil.get();
@@ -33,11 +36,15 @@ public class EquipmentService {
     }*/
 
     public Equipment create(Equipment equipment) {
+        Company company = companyRepository.getReferenceById(SecurityUtil.authUserDefaultCompanyId());
+        equipment.setCompany(company);
         return repository.save(equipment);
     }
 
     public void update(Equipment equipment) {
         //Check null, otherUser
+        Company company = companyRepository.getReferenceById(SecurityUtil.authUserDefaultCompanyId());
+        equipment.setCompany(company);
         repository.save(equipment);
     }
 
