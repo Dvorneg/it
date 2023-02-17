@@ -18,4 +18,4 @@ To do:
 - link the user and the organization
 
 Deploy:
- http://46.19.64.73:8080/gameA/
+ http://46.19.64.73:8080/it/
