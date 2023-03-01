@@ -22,12 +22,13 @@ VALUES (9,'оф-3','принтер','LG', 'description3',  'responsible_person3'
 
 
 INSERT INTO USERS (name, email, password, default_company_id)
-VALUES ('User', 'test', '{noop}test', 1),
+VALUES ('User', 'test', '{noop}test', 2),
        ('Admin', 'admin@gmail.com', '{noop}admin', 2),
-       ('test1@mail.ru', 'test1@mail.ru', '{noop}test1@mail.ru', 1);
+       ('test1@mail.ru', 'test1@mail.ru', '{noop}test1@mail.ru', 2),
+       ('test', '123@mail.ru', '{noop}123', 1);
 
-INSERT INTO USERS (name, email, password)
-VALUES      ('test', '123@mail.ru', '{noop}123');
+/*INSERT INTO USERS (name, email, password)
+VALUES      ('test', '123@mail.ru', '{noop}123');*/
 
 INSERT INTO USER_ROLE (role, user_id)
 VALUES ('USER', 1),
@@ -39,6 +40,6 @@ VALUES ('USER', 1),
 
 
 INSERT INTO USER_COMPANY (user_id, company_id)
-VALUES (1, 1);
+VALUES (4, 1);
 
 
