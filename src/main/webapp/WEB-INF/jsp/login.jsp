@@ -34,6 +34,7 @@
 </div>
 <div class="container">
     <div class="lead"><spring:message code="app.description"/></div>
+    <div class="lead"><spring:message code="app.description2"/></div>
     <a class="btn btn-lg btn-success my-4" href="https://github.com/Dvorneg/it" target="_blank">Documentation</a>
 </div>
 <jsp:include page="fragments/footer.jsp"/>

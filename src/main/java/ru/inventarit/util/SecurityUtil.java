@@ -28,13 +28,12 @@ public class SecurityUtil {
         return get().getUserTo().id();
     }
 
-
-
-    public static int authUserDefaultCompanyId() {
+    public static int authUserGetDefaultCompanyId() {
         return get().getUserTo().getDefaultCompanyId();
     }
 
-/*    public static int authUserCaloriesPerDay() {
-        return get().getUserTo().getCaloriesPerDay();
-    }*/
+    public static void authUserSetDefaultCompanyId(Integer companyId) {
+        get().getUserTo().setDefaultCompanyId(companyId);
+    }
+
 }

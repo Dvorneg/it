@@ -31,13 +31,17 @@ public class CompanyService {
         companyRepository.save(company);
         Objects.requireNonNull(SecurityUtil.safeGet()).getUserTo().setDefaultCompanyId(company.id());
         User user = userRepository.getReferenceById(userId);
-
         user.getCompanies().add(company);
-        //List<Company> companyList= user.getCompanies();
-        //companyList.add(company);
-        //user.setCompanies( companyList );
-
         user.setDefaultCompanyId(company.id());
+        userRepository.save(user);
+    }
+
+    //userService?
+    public void setDefaultCompanyId(Integer companyId, Integer userId) {
+        SecurityUtil.authUserSetDefaultCompanyId(companyId);
+
+        User user = userRepository.getReferenceById(userId);
+        user.setDefaultCompanyId(companyId);
         userRepository.save(user);
     }
 

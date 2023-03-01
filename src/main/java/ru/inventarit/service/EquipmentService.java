@@ -1,6 +1,7 @@
 package ru.inventarit.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.inventarit.model.Company;
@@ -15,13 +16,15 @@ import java.util.List;
 @Service
 @Transactional
 @AllArgsConstructor
+@Slf4j
 public class EquipmentService {
     private final EquipmentRepository repository;
     private final CompanyRepository companyRepository;
 
     public List<Equipment> getAll() {
         //UserTo userTo = SecurityUtil.get();
-        return repository.getAllByCompanyId(SecurityUtil.authUserDefaultCompanyId());
+        log.info("EquipmentService getAll for compId {}", SecurityUtil.authUserGetDefaultCompanyId());
+        return repository.getAllByCompanyId(SecurityUtil.authUserGetDefaultCompanyId());
     }
 
     public Equipment getById(int id)
@@ -36,14 +39,14 @@ public class EquipmentService {
     }*/
 
     public Equipment create(Equipment equipment) {
-        Company company = companyRepository.getReferenceById(SecurityUtil.authUserDefaultCompanyId());
+        Company company = companyRepository.getReferenceById(SecurityUtil.authUserGetDefaultCompanyId());
         equipment.setCompany(company);
         return repository.save(equipment);
     }
 
     public void update(Equipment equipment) {
         //Check null, otherUser
-        Company company = companyRepository.getReferenceById(SecurityUtil.authUserDefaultCompanyId());
+        Company company = companyRepository.getReferenceById(SecurityUtil.authUserGetDefaultCompanyId());
         equipment.setCompany(company);
         repository.save(equipment);
     }

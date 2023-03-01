@@ -23,7 +23,7 @@
 <div class="parent">
     <div class="child">
         <label class="btn btn-default"  for="selectCompany" > <spring:message code="company.label"/> :</label>
-        <select id="selectCompany" name="hero" >
+        <select id="selectCompany" name="company" >
             <%--<option value="comapany 1">Strong company</option>--%>
         </select>
         <button type="button" onclick="selectCompany()" id="btn_select_company"> <spring:message code="common.select"/></button>

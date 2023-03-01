@@ -2,14 +2,12 @@ package ru.inventarit.to;
 
 
 import ru.inventarit.HasIdAndEmail;
-import ru.inventarit.model.Company;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
+
 
 public class UserTo extends BaseTo implements HasIdAndEmail, Serializable {
     //@Serial

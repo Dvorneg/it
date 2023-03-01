@@ -6,7 +6,7 @@
 
 For work, it is necessary postgresSQL with the created base equipment.
 Database connection settings in the application.properties file/
-Enter login/password 123|123.
+Enter login/password.
 
 To do:
 - Error handling

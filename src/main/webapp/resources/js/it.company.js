@@ -24,7 +24,17 @@ function beforeSelectCompany() {
 
 
 function selectCompany() {
-    document.location.href = "equipments/";
+
+    var companyId= document.getElementById("selectCompany").value;
+    $.ajax({
+        url: ajaxUrl +'select/' + companyId,
+        method: 'post',
+        success: function(){
+            document.location.href = "equipments/";
+        },
+        error: function (error) {alert('error select Company; ' + eval(error));}
+    });
+
 }
 
 function addCompany() {
@@ -32,12 +42,8 @@ function addCompany() {
     $.ajax({
         url: ajaxUrl +name_company.value,
         method: 'post',
-        /* dataType: 'json',
-        data: $(this).serialize(),*/
         success: function(){
             document.location.reload();
-            //document.location.href = "/profile/company/";
-            //alert("OK!")
         },
         error: function (error) {alert('error add Company; ' + eval(error));}
     });

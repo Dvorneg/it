@@ -34,11 +34,21 @@ public class CompanyRestController {
 
     @PostMapping("/{nameCompany}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void AddCompany(@AuthenticationPrincipal AuthUser authUser, @PathVariable String nameCompany) {
+    public void addCompany(@AuthenticationPrincipal AuthUser authUser, @PathVariable String nameCompany) {
         //check
         Company company = new Company( nameCompany);
         //return companyService.create(company);
         companyService.create(company, authUser.getId());
+
+    }
+
+    @PostMapping("/select/{idCompany}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void setDefaultCompany(@AuthenticationPrincipal AuthUser authUser, @PathVariable Integer idCompany) {
+        //check
+        //Company company = new Company( nameCompany);
+        //return companyService.create(company);
+        companyService.setDefaultCompanyId(idCompany, authUser.getId());
 
     }
 
