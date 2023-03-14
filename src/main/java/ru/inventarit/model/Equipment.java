@@ -19,7 +19,6 @@ import javax.validation.constraints.Size;
 @Getter
 @Entity
 //@EqualsAndHashCode(callSuper = true)
-//@Valid
 @Table(name = "equipment")
 public class Equipment extends NamedEntity{
 
@@ -60,7 +59,6 @@ public class Equipment extends NamedEntity{
     @JsonBackReference
     private Company company;
 
-
 /*    public Equipment(Integer id, String name, String inventoryNumber, String manufacturer, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf) {
         super(id, name);
         this.inventoryNumber = inventoryNumber;
@@ -71,15 +69,7 @@ public class Equipment extends NamedEntity{
         this.typeOf = typeOf;
     }*/
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public Equipment(Integer id, String name, String inventoryNumber, String manufacturer, String description,String responsiblePerson,LocalDate releaseDate,TypeOf type,Company company) {
+    public Equipment(Integer id, String name, String inventoryNumber, String manufacturer, String description,String responsiblePerson,LocalDate releaseDate,TypeOf typeOf,Company company) {
         super(id, name);
         this.inventoryNumber = inventoryNumber;
         this.manufacturer = manufacturer;

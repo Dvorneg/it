@@ -5,7 +5,6 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,11 +16,12 @@ import ru.inventarit.model.User;
 import ru.inventarit.repository.UserRepository;
 import ru.inventarit.to.UserTo;
 import ru.inventarit.util.UserUtil;
-import ru.inventarit.web.AuthUser;
-
+import ru.inventarit.AuthUser;
 
 import java.util.List;
 import java.util.Optional;
+
+import static ru.inventarit.util.UserUtil.prepareToSave;
 
 
 @Service("userService")
@@ -32,14 +32,6 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
-
-//    private boolean modificationRestriction;
-
-/*    @Autowired
-    @SuppressWarnings("deprecation")
-    public void setEnvironment(Environment environment) {
-        modificationRestriction = environment.acceptsProfiles(Profiles.HEROKU);
-    }*/
 
     public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
@@ -59,7 +51,7 @@ public class UserService implements UserDetailsService {
         repository.delete(id);
     }
 
-    public List<Company> getUserCompany(int userId){
+    public List<Company> getUserCompany(int userId) {
         //check?
         User user = repository.getReferenceById(userId);
         return user.getCompanies();
@@ -76,8 +68,7 @@ public class UserService implements UserDetailsService {
         //return checkNotFound(repository.getByEmail(email), "email=" + email);
     }
 
-
-    //@Override
+/*    //@Override
     protected UserDetailsService userDetailsService() {
         return email -> {
             log.debug("Authenticating '{}'", email);
@@ -86,11 +77,18 @@ public class UserService implements UserDetailsService {
                     () -> new UsernameNotFoundException("User '" + email + "' was not found")));
         };
 
-    }
+    }*/
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+    public AuthUser loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> users = repository.findByEmailIgnoreCase(username);
+
+        if (users.isEmpty())
+            throw new UsernameNotFoundException("User not found");
+
+        //UserTo userTo = (UserUtil.asTo(users.get()));
+        log.info("loadUserByUsername" + users.get());
+        return new AuthUser(users.get());
     }
 
     @Cacheable("users")
@@ -106,14 +104,18 @@ public class UserService implements UserDetailsService {
         prepareAndSave(user);
     }
 
+    @CacheEvict(value = "users", allEntries = true)
+    @Transactional
+    public void update(UserTo userTo) {
+        //checkModificationAllowed(userTo.id());
+        User user = get(userTo.id());
+        prepareAndSave(UserUtil.updateFromTo(user, userTo));
+    }
 
-        @CacheEvict(value = "users", allEntries = true)
-        @Transactional
-        public void update(UserTo userTo) {
-            //checkModificationAllowed(userTo.id());
-            User user = get(userTo.id());
-            prepareAndSave(UserUtil.updateFromTo(user, userTo));
-        }
+    private User prepareAndSave(User user) {
+        return repository.save(prepareToSave(user, passwordEncoder));
+        //return repository.save(user);
+    }
 
 /*    protected void checkModificationAllowed(int id) {
         if (modificationRestriction && id < AbstractBaseEntity.START_SEQ + 2) {
@@ -121,28 +123,14 @@ public class UserService implements UserDetailsService {
         }
     }*/
 
-/*
-    @CacheEvict(value = "users", allEntries = true)
+
+/*    @CacheEvict(value = "users", allEntries = true)
     @Transactional
     public void enable(int id, boolean enabled) {
         //checkModificationAllowed(id);
         User user = get(id);
         user.setEnabled(enabled);
         repository.save(user);  // !! need only for JDBC implementation
-    }
-
-    @Override
-    public AuthUser loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = repository.findByEmailIgnoreCase(email.toLowerCase()).get();
-        if (user == null) {
-            throw new UsernameNotFoundException("User " + email + " is not found");
-        }
-        return new AuthUser(user);
-    }*/
-
-    private User prepareAndSave(User user) {
-        //return repository.save(prepareToSave(user, passwordEncoder));
-        return repository.save(user);
     }
 
 /*    public User getWithMeals(int id) {

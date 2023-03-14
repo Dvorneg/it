@@ -21,7 +21,6 @@
         <webjars-noty.version>3.1.4</webjars-noty.version>
         <webjars-datatables.version>1.12.1</webjars-datatables.version>
         <webjars-datetimepicker.version>2.5.20-1</webjars-datetimepicker.version>
-        <jackson.version>2.13.0</jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -107,13 +106,6 @@
             <artifactId>popper.js</artifactId>
             <version>2.9.3</version>
         </dependency>
-
-
-<!--        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-        </dependency>-->
-
         <!--JSON-->
 <!--        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

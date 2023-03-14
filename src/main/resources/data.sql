@@ -22,7 +22,7 @@ VALUES (9,'оф-3','принтер','LG', 'description3',  'responsible_person3'
 
 
 INSERT INTO USERS (name, email, password, default_company_id)
-VALUES ('User', 'test', '{noop}test', 2),
+VALUES ('Userok', 'test@gmail.com', '{noop}test', 2),
        ('Admin', 'admin@gmail.com', '{noop}admin', 2),
        ('test1@mail.ru', 'test1@mail.ru', '{noop}test1@mail.ru', 2),
        ('test', '123@mail.ru', '{noop}123', 1);

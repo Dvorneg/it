@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import ru.inventarit.AuthUser;
 import ru.inventarit.model.Company;
 import ru.inventarit.service.CompanyService;
 import ru.inventarit.service.UserService;

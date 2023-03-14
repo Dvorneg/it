@@ -11,6 +11,7 @@ import ru.inventarit.HasIdAndEmail;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 
@@ -21,9 +22,9 @@ import java.util.*;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends NamedEntity implements HasIdAndEmail, Serializable{
-// Serializable!
-/*    @Serial
-    private static final long serialVersionUID = 1L;*/
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -71,27 +72,9 @@ public class User extends NamedEntity implements HasIdAndEmail, Serializable{
         this.companies = companies;
     }
 
-/*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    //@OrderBy("dateTime DESC")
-    @JsonManagedReference
-    @OnDelete(action = OnDeleteAction.CASCADE) //https://stackoverflow.com/a/44988100/548473
-    private List<Equipment> equipments;*/
 
 /*    public User(User u) {
         this(u.id, u.name, u.email, u.password, u.enabled, u.registered, u.roles);
-    }
-
-    public User(Integer id, String name, String email, String password, int caloriesPerDay, Role role, Role... roles) {
-        this(id, name, email, password,  true, new Date(), EnumSet.of(role, roles));
-    }*/
-
-/*    public User(Integer id, String name, String email, String password, boolean enabled, Date registered, Collection<Role> roles) {
-        super(id, name);
-        this.email = email;
-        this.password = password;
-        this.enabled = enabled;
-        this.registered = registered;
-        setRoles(roles);
     }*/
 
     public User(Integer id, String name, String email, String password, Role user) {
@@ -102,7 +85,6 @@ public class User extends NamedEntity implements HasIdAndEmail, Serializable{
         this.registered =  new Date();
         setRoles(roles);
     }
-
 
     public void setRoles(Collection<Role> roles) {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);

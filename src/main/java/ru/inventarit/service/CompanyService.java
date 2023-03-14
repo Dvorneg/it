@@ -10,8 +10,6 @@ import ru.inventarit.repository.CompanyRepository;
 import ru.inventarit.repository.UserRepository;
 import ru.inventarit.util.SecurityUtil;
 
-import java.util.Objects;
-
 @Service
 @Transactional
 public class CompanyService {
@@ -29,7 +27,7 @@ public class CompanyService {
 
     public void create(Company company, Integer userId) {
         companyRepository.save(company);
-        Objects.requireNonNull(SecurityUtil.safeGet()).getUserTo().setDefaultCompanyId(company.id());
+        //Objects.requireNonNull(SecurityUtil.safeGet()).getUserTo().setDefaultCompanyId(company.id());
         User user = userRepository.getReferenceById(userId);
         user.getCompanies().add(company);
         user.setDefaultCompanyId(company.id());

@@ -3,10 +3,10 @@ package ru.inventarit.service;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.inventarit.EquipmentTestData.*;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import ru.inventarit.TimingExtension;
@@ -31,12 +31,14 @@ public class EquipmentServiceTest {
     }
 
     @Test
+    @WithMockUser(roles = "ADMIN")
     void getByAdminId() {
         Equipment actual = service.getById(ADMIN_EQUIPMENT_ID);
         EQUIPMENT_MATCHER.assertMatch(actual,adminEquipment);
     }
 
     @Test
+    @WithMockUser(username = "123@mail.ru", password = "123", roles = "USER")
     void create() {
         Equipment created = service.create(getNew());
         int newId = created.id();

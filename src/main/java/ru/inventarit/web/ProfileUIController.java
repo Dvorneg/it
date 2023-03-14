@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import ru.inventarit.AuthUser;
 import ru.inventarit.View;
-import ru.inventarit.model.Company;
 import ru.inventarit.model.User;
 import ru.inventarit.service.UserService;
 import ru.inventarit.to.UserTo;
@@ -81,8 +81,6 @@ public class ProfileUIController {
 
 
 
-
-
     public List<User> getAll() {
         log.info("getAll");
         return service.getAll();
@@ -127,17 +125,10 @@ public class ProfileUIController {
         return service.getByEmail(email);
     }
 
-
-/*    public User getWithMeals(int id) {
-        log.info("getWithMeals {}", id);
-        return service.getWithMeals(id);
-    }*/
-
 /*    public void enable(int id, boolean enabled) {
         log.info(enabled ? "enable {}" : "disable {}", id);
         service.enable(id, enabled);
     }*/
-
 
 }
 
